@@ -1,3 +1,5 @@
+package Everton;
+
 /**
  * O programa do Everton Gostosão que soma e multiplica números.
  * 
