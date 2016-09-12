@@ -8,12 +8,12 @@ public class Numeros
 	{
 		int maior = 0, media = 0, quantidade, numero, soma= 0;
 		
-		String texto = JOptionPane.showInputDialog("Informe a quantidade de números: ");
+		String texto = JOptionPane.showInputDialog("Informe a quantidade de nÃºmeros: ");
 		quantidade = Integer.parseInt(texto);
 		
 		for (int k = 0; k < quantidade; k = k + 1)
 		{
-			String texto1 = JOptionPane.showInputDialog("Informe um número: ");
+			String texto1 = JOptionPane.showInputDialog("Informe um nÃºmero: ");
 			numero = Integer.parseInt(texto1);
 			
 			if (numero > maior)
@@ -26,8 +26,8 @@ public class Numeros
 			
 			media = soma / quantidade;
 			
-			System.out.println("O maior numero é: " + maior);
-			System.out.println("A soma é: " + soma);
-			System.out.println("A média é: " + media);
+			System.out.println("O maior numero Ã©: " + maior);
+			System.out.println("A soma Ã©: " + soma);
+			System.out.println("A mÃ©dia Ã©: " + media);
 	}
 }
