@@ -10,7 +10,7 @@ public class MelhorAluno
 		double nota, melhorNota = 0;
 		String nome, nomeAluno = null;
 		
-		String texto = JOptionPane.showInputDialog("Informe o número de alunos: ");
+		String texto = JOptionPane.showInputDialog("Informe o nÃºmero de alunos: ");
 		numeroAlunos = Integer.parseInt(texto);
 		
 		do {
@@ -27,7 +27,7 @@ public class MelhorAluno
 			
 		} while (contador < numeroAlunos);
 		
-		System.out.println("O melhor aluno(a) da turma é " + nomeAluno + ".");
+		System.out.println("O melhor aluno(a) da turma Ã© " + nomeAluno + ".");
 		System.out.println("Com a nota " + melhorNota + ".");
 	}
 }
