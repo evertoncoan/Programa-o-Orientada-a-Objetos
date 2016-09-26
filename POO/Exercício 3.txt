@@ -1,0 +1,15 @@
+Lista de Exercícios Vetores.
+Exercício 3.
+
+Inicio
+	inteiro vetorElementos[16]
+	inteiro elemento, aux;
+
+	// já existem elementos no vetor
+
+	para (int i = 0, i < 8; i++){
+		aux = vetorElemento[i+8];
+		vetorElemento[1+8] = vetorElemento[i]
+		vetorElemento[i] = aux;
+	}
+Fim
