@@ -1,11 +1,11 @@
-Lista de ExercÌcios Vetores.
-ExercÌcio 3.
+Lista de Exerc√≠cios Vetores.
+Exerc√≠cio 3.
 
 Inicio
 	inteiro vetorElementos[16]
 	inteiro elemento, aux;
 
-	// j· existem elementos no vetor
+	// j√° existem elementos no vetor
 
 	para (int i = 0, i < 8; i++){
 		aux = vetorElemento[i+8];
