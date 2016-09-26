@@ -1,5 +1,5 @@
-Lista de Exercícios Vetores.
-Exercício 1.
+Lista de ExercÃ­cios Vetores.
+ExercÃ­cio 1.
 
 Inicio
 	int elemento, arrayElementos[12];
