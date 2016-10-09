@@ -14,7 +14,7 @@ public class Exercicio5
 		
 		for (int i = 0; i < 40; i++)
 		{
-			System.out.println("Insira um número: ");
+			System.out.println("Insira um nÃºmero: ");
 			elemento = entrada.nextDouble();
 			arrayElementos[i] = elemento;
 		}
