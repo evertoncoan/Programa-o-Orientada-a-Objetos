@@ -16,4 +16,17 @@ Inicio
 		}
 	}
 	
-	
+	para (inteiro i = 0; i < m; i++){
+		para ( inteiro j = 0; j < n; j++){
+			para (inteiro k = j + 1; k < n; k++){
+				se (matrizElementos[i][j] == matrizElementos[i][k])
+					bool = true;
+			}
+		}
+	}
+
+	se (bool = true)
+		escreva "Existem elementos repetidos.";
+	senão
+		escreva "Não existem elementos repetidos."
+Fim
