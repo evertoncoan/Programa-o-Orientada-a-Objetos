@@ -1,4 +1,4 @@
-package IMC;
+package Aula2.IMC;
 
 import javax.swing.JOptionPane;
 
@@ -19,6 +19,6 @@ public class IMC
 		
 		IMC = peso / (altura * altura);
 		
-		System.out.println("Seu IMC é: " + IMC);
+		System.out.println("Seu IMC ï¿½: " + IMC);
 	}
 }
