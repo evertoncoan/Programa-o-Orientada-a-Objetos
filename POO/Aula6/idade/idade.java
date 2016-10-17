@@ -1,4 +1,4 @@
-package idade;
+package Aula6.idade;
 
 import javax.swing.JOptionPane;
 
@@ -8,7 +8,7 @@ public class idade
 	{
 		int contador = 0, numeroPessoas, idade;
 		
-		String texto = JOptionPane.showInputDialog("Informe o número de Pessoas: ");
+		String texto = JOptionPane.showInputDialog("Informe o nï¿½mero de Pessoas: ");
 		numeroPessoas = Integer.parseInt(texto);
 		
 		while (contador < numeroPessoas)
@@ -17,7 +17,7 @@ public class idade
 			idade = Integer.parseInt(texto1);
 			
 			if (idade <= 12){
-				System.out.println("Criança.");
+				System.out.println("Crianï¿½a.");
 			}
 				else
 				if (idade < 18){

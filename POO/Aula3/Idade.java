@@ -1,3 +1,5 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class Idade 
@@ -8,7 +10,7 @@ public class Idade
 		int idade = Integer.parseInt(idadeTexto);
 		
 		if (idade <= 12)
-			System.out.println("Criança");
+			System.out.println("Crianï¿½a");
 		
 		else 
 			if (idade < 18)

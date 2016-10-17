@@ -1,4 +1,4 @@
-package exercicio3;
+package NovosExerciciosMatrizesJava.exercicio3;
 
 import java.util.Scanner;
 
@@ -8,17 +8,17 @@ public class Exercicio3 {
 		
 		int n = 0, m = 0, maiores = 0;
 		
-		System.out.println("Insira o número de linhas da matriz: ");
+		System.out.println("Insira o nï¿½mero de linhas da matriz: ");
 		n = entrada.nextInt();
 		
-		System.out.println("Insira o número de colunas da matriz: ");
+		System.out.println("Insira o nï¿½mero de colunas da matriz: ");
 		m = entrada.nextInt();
 		
 		double[][] matrizElementos = new double[n][m];
 		
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < m; j++){
-				System.out.println("Insira um número: ");
+				System.out.println("Insira um nï¿½mero: ");
 				matrizElementos[i][j] = entrada.nextDouble();
 			}
 		}

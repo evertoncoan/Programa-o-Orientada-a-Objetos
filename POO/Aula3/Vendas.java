@@ -1,3 +1,5 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class Vendas 
@@ -21,6 +23,6 @@ public class Vendas
 			System.out.println("Desconto de 15%.");
 		}
 		
-		System.out.println("O valor final da compra é de: " + valorFinal);
+		System.out.println("O valor final da compra ï¿½ de: " + valorFinal);
 	}
 }

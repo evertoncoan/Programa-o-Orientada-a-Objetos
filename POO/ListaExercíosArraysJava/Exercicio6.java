@@ -1,4 +1,4 @@
-package exercicio6;
+package ListaExercíosArraysJava;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class Exercicio6
 		
 		for (int i = 0; i < 40; i++)
 		{
-			System.out.println("Insira um n�mero: ");
+			System.out.println("Insira um número: ");
 			elemento = entrada.nextDouble();
 			if ( elemento < 0)
 				elemento = 0;

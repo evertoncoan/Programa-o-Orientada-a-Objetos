@@ -1,3 +1,5 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class ParImpar
@@ -8,8 +10,8 @@ public class ParImpar
 		int inteiro = Integer.parseInt(inteiroTexto);
 		
 		if (inteiro % 2 == 0)
-			System.out.println("É par.");
+			System.out.println("ï¿½ par.");
 		else
-			System.out.println("É impar.");
+			System.out.println("ï¿½ impar.");
 	}	
 }

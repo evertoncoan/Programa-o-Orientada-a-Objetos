@@ -1,4 +1,4 @@
-package exercicio2;
+package NovosExerciciosMatrizesJava.exercicio2;
 
 import java.util.Scanner;
 
@@ -8,10 +8,10 @@ public class Exercicio2 {
 		
 		int n = 0, m = 0;
 		
-		System.out.println("Insira o número de linhas da matriz: ");
+		System.out.println("Insira o nï¿½mero de linhas da matriz: ");
 		n = entrada.nextInt();
 		
-		System.out.println("Insira o número de colunas da matriz: ");
+		System.out.println("Insira o nï¿½mero de colunas da matriz: ");
 		m = entrada.nextInt();
 		
 		int[][] matrizElementos = new int[n][m];

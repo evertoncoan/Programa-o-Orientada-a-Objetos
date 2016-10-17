@@ -1,3 +1,5 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class Vestibular 
@@ -8,10 +10,10 @@ public class Vestibular
 		
 		String nome = JOptionPane.showInputDialog("Insira o nome do Candidato: ");
 		
-		String portTexto = JOptionPane.showInputDialog("Informe o a nota na prova de Português: ");
+		String portTexto = JOptionPane.showInputDialog("Informe o a nota na prova de Portuguï¿½s: ");
 		double port = Double.parseDouble(portTexto);
 		
-		String matTexto = JOptionPane.showInputDialog("Informe o a nota na prova de Matemática: ");
+		String matTexto = JOptionPane.showInputDialog("Informe o a nota na prova de Matemï¿½tica: ");
 		double mat = Double.parseDouble(matTexto);
 		
 		String geraisTexto = JOptionPane.showInputDialog("Informe o a nota na prova de Conhecimentos Gerais: ");
@@ -19,8 +21,8 @@ public class Vestibular
 		
 		media = (port + mat + gerais) / 3;
 		
-		System.out.printf(nome + ", " + port + " em Português" + ", " + mat +" em Matemática" + " e " + gerais
-				+ " em Conhecimentos Gerais" + "\nMédia " + media);
+		System.out.printf(nome + ", " + port + " em Portuguï¿½s" + ", " + mat +" em Matemï¿½tica" + " e " + gerais
+				+ " em Conhecimentos Gerais" + "\nMï¿½dia " + media);
 		
 		if ((media >= 5) && (port >= 4 ) && (mat >= 4) && (gerais >= 4))
 			System.out.printf("\nAprovado.");

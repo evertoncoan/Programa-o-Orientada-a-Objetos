@@ -1,3 +1,5 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class Salario 
@@ -15,6 +17,6 @@ public class Salario
 		if (vendas < 20000)
 			valorGanho = vendas * 0.075;
 		
-		System.out.println("O valor Ganho é de: " + valorGanho);
+		System.out.println("O valor Ganho ï¿½ de: " + valorGanho);
 	}
 }

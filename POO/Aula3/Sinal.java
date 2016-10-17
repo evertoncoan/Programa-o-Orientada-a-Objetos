@@ -1,10 +1,12 @@
+package Aula3;
+
 import javax.swing.JOptionPane;
 
 public class Sinal 
 {
 	public static void main(String[] args)
 	{
-		String xTexto = JOptionPane.showInputDialog("Informe um número: ");
+		String xTexto = JOptionPane.showInputDialog("Informe um nï¿½mero: ");
 		double x = Double.parseDouble(xTexto);
 		
 		if (x > 0)

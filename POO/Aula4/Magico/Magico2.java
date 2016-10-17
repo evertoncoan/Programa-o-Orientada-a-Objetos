@@ -1,4 +1,4 @@
-package Magico;
+package Aula4.Magico;
 
 import javax.swing.JOptionPane;
 

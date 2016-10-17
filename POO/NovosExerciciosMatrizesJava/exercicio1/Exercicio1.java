@@ -1,4 +1,4 @@
-package exercicio1;
+package NovosExerciciosMatrizesJava.exercicio1;
 
 import java.util.Scanner;
 
@@ -10,17 +10,17 @@ public class Exercicio1 {
 		int linha = 0, coluna = 0;
 		double maiorValor = 0;
 		
-		System.out.println("Insira o número de linhas da matriz: ");
+		System.out.println("Insira o nï¿½mero de linhas da matriz: ");
 		n = entrada.nextInt();
 		
-		System.out.println("Insira o número de colunas da matriz: ");
+		System.out.println("Insira o nï¿½mero de colunas da matriz: ");
 		m = entrada.nextInt();
 		
 		double[][] matrizElementos = new double[n][m];
 		
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < m; j++){
-				System.out.println("Insira um número: ");
+				System.out.println("Insira um nï¿½mero: ");
 				matrizElementos[i][j] = entrada.nextDouble();
 			}
 		}
@@ -34,9 +34,9 @@ public class Exercicio1 {
 				}
 			}
 		}
-		System.out.println("O maior valor é: " + maiorValor);
-		System.out.println("Ele está na linha número: " + linha);
-		System.out.println("E na coluna número: " + coluna);
+		System.out.println("O maior valor ï¿½: " + maiorValor);
+		System.out.println("Ele estï¿½ na linha nï¿½mero: " + linha);
+		System.out.println("E na coluna nï¿½mero: " + coluna);
 		
 		entrada.close();
 	}

@@ -1,4 +1,4 @@
-package radioativo;
+package Aula6.radioativo;
 
 import javax.swing.JOptionPane;
 
@@ -20,9 +20,9 @@ public class radioativo
 		if (tempo >= 60)
 		{
 			tempo = tempo / 60;
-			System.out.println("O tempo necessário é: " + tempo + " minutos.");
+			System.out.println("O tempo necessï¿½rio ï¿½: " + tempo + " minutos.");
 		}
 			else
-				System.out.println("O tempo necessário é: " + tempo + " segundos");
+				System.out.println("O tempo necessï¿½rio ï¿½: " + tempo + " segundos");
 	}
 }

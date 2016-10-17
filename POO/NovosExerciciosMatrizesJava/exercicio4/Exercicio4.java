@@ -1,4 +1,4 @@
-package exercicio4;
+package NovosExerciciosMatrizesJava.exercicio4;
 
 import java.util.Scanner;
 
@@ -10,10 +10,10 @@ public class Exercicio4 {
 		double x = 0;
 		boolean bool = false;
 		
-		System.out.println("Insira o número de linhas da matriz: ");
+		System.out.println("Insira o nÃºmero de linhas da matriz: ");
 		n = entrada.nextInt();
 		
-		System.out.println("Insira o número de colunas da matriz: ");
+		System.out.println("Insira o nÃºmero de colunas da matriz: ");
 		m = entrada.nextInt();
 		
 		System.out.println("Insira valor de x: ");
@@ -23,7 +23,7 @@ public class Exercicio4 {
 		
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < m; j++){
-				System.out.println("Insira um número: ");
+				System.out.println("Insira um nÃºmero: ");
 				matrizElementos[i][j] = entrada.nextDouble();
 			}
 		}
@@ -37,7 +37,7 @@ public class Exercicio4 {
 			}
 		}
 		if (bool = false){
-			System.out.println("Valor não encontrado.");
+			System.out.println("Valor nÃ£o encontrado.");
 		}
 		
 		entrada.close();

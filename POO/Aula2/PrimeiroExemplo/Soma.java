@@ -1,4 +1,4 @@
-package PrimeiroExemplo;
+package Aula2.PrimeiroExemplo;
 
 import javax.swing.JOptionPane;
 

@@ -1,4 +1,4 @@
-package exercicio7;
+package ListaExerc√≠osArraysJava;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class Exercicio7
 		
 		for (int i = 0; i < 20; i++)
 		{
-			System.out.println("Insira um n˙mero "
+			System.out.println("Insira um nÔøΩmero "
 					+ "para o primeiro vetor: ");
 			elemento1 = entrada.nextDouble();
 			array1[i] = elemento1;
@@ -26,7 +26,7 @@ public class Exercicio7
 		
 		for (int i = 0; i < 20; i++)
 		{
-			System.out.println("Insira um n˙mero "
+			System.out.println("Insira um nÔøΩmero "
 					+ "para o segundo vetor: ");
 			elemento2 = entrada.nextDouble();
 			array2[i] = elemento2;

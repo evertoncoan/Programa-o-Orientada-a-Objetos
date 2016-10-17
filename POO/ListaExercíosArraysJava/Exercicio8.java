@@ -1,4 +1,4 @@
-package exercicio8;
+package ListaExercÃ­osArraysJava;
 
 import java.util.Scanner;
 
@@ -11,13 +11,13 @@ public class Exercicio8
 		double elemento;
 		double[] arrayElementos = new double[40];
 		
-		System.out.println("Insira um número: ");
+		System.out.println("Insira um nï¿½mero: ");
 		elemento = entrada.nextDouble();
 		arrayElementos[0] = elemento;
 		
 		for (int i = 1; i < 40; i ++)
 		{
-			System.out.println("Insira um número: ");
+			System.out.println("Insira um nï¿½mero: ");
 			elemento = entrada.nextDouble();
 			arrayElementos[i] = elemento + arrayElementos[i-1];
 		}
