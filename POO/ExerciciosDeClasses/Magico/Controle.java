@@ -1,3 +1,5 @@
+package ExerciciosDeClasses.Magico;
+
 import java.util.Scanner;
 
 public class Controle {

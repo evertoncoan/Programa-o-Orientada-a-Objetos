@@ -1,3 +1,5 @@
+package ExerciciosDeClasses.Magico;
+
 public class Magico {
 	private double numMag;
 	private double numero;
