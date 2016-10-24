@@ -1,3 +1,5 @@
+package ExerciciosDeClasses.Hotel;
+
 public class Hotel {
 	public double iptu;
 	public double valorDiaria;
