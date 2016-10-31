@@ -3,17 +3,20 @@ public class Aluno {
 	private int matricula;
 	private String nome;
 	private String curso;
+	private Disciplina[] disciplinas;
 	
 	public Aluno(){
 		matricula = 0;
 		nome = null;
 		curso = null;
+		disciplinas = null;
 	}
 	
-	public Aluno(int mat, String pNome, String pCurso){
+	public Aluno(int mat, String pNome, String pCurso, Disciplina[] pDisciplinas){
 		matricula = mat;
 		nome = pNome;
 		curso = pCurso;
+		disciplinas = pDisciplinas;
 	}
 
 	public int getMatricula() {
@@ -40,6 +43,14 @@ public class Aluno {
 		this.curso = curso;
 	}
 	
+	public Disciplina[] getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(Disciplina[] disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
 	public boolean verificaNomesIguais(Aluno pAluno){
 		if(this.getNome().equals(pAluno.getNome()))
 			return true;
@@ -47,9 +58,17 @@ public class Aluno {
 			return false;
 	}
 	
+	public String mostraArrayDisciplinas(){
+		String msg = null;
+		for(int i = 0; i < disciplinas.length; i++)
+			msg += "Nota[%d]: " + i + disciplinas[i];
+		return msg;
+	}
+	
 	public String toString(){
 		return "Nome: " + this.getNome() +
 			   "\nMatricula: " + this.getMatricula() +
-			   "\nCurso: " + this.getCurso();
+			   "\nCurso: " + this.getCurso() +
+			   "\nDisciplinas: " + this.mostraArrayDisciplinas();
 	}
 }
