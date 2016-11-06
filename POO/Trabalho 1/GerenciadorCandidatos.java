@@ -78,24 +78,8 @@ public class GerenciadorCandidatos {
 	 * 
 	 * @return um inteiro contendo a idade.
 	 */
-	private int solicitarIdade()
-	{
-		boolean notNumber = false;
-		int idade = 0;
-		while (notNumber == false)
-		{
-			String texto = iu.solicitaString("Idade:");
-			try
-			{
-				idade = Integer.parseInt(texto);
-				notNumber = true;
-			}
-			catch(Exception e)
-			{
-				 iu.informaUsuario("Não é número. Insira um número");
-			}
-		}
-		return idade;
+	private int solicitarIdade() {
+		return iu.solicitaInteiro("Idade:");
 	}
 	
 	/**
@@ -112,9 +96,11 @@ public class GerenciadorCandidatos {
 	 * 
 	 * @return uma String contendo a idade média dos candidatos.
 	 */
-	public String idadeMedia(){
+	public String idadeMedia()
+	{
 		double total = 0;
-		for (int i = 0; i < this.tamanho; i++){
+		for (int i = 0; i < this.tamanho; i++)
+		{
 			total = total + arrayCandidatos[i].getIdade();
 		}
 		total        = total / this.tamanho;
@@ -127,14 +113,15 @@ public class GerenciadorCandidatos {
 	 * 
 	 * @return uma String contendo a maior idade dentre todos os candidatos.
 	 */
-	public String maiorIdade(){
-		int maiorInt = 0;
-		for (int i = 0; i < this.tamanho; i++){
-			if (arrayCandidatos[i].getIdade() > maiorInt)
-				maiorInt = arrayCandidatos[i].getIdade();
+	public String maiorIdade()
+	{
+		int maior = 0;
+		for (int i = 0; i < this.tamanho; i++)
+		{
+			if (arrayCandidatos[i].getIdade() > maior)
+				maior = arrayCandidatos[i].getIdade();
 		}
-		String maiorString = Integer.toString(maiorInt);
-		return "Maior idade entre todos os candidatos: " + maiorString + " anos.";
+		return "Maior idade entre todos os candidatos: " + maior + " anos.";
 	}
 	
 	/**
@@ -142,17 +129,17 @@ public class GerenciadorCandidatos {
 	 * 
 	 * @return uma String contendo a maior idade dentre todos os homens.
 	 */
-	public String maiorIdadeHomens(){
-		int maiorInt = 0;
+	public String maiorIdadeHomens()
+	{
+		int maior = 0;
 		if (this.existeHomen)
 		{
 			for (int i = 0; i < this.tamanho; i++)
 			{
-				if (arrayCandidatos[i].getIdade() > maiorInt && "M".equals(arrayCandidatos[i].getGenero()))
-				maiorInt = arrayCandidatos[i].getIdade();
+				if (arrayCandidatos[i].getIdade() > maior && "M".equals(arrayCandidatos[i].getGenero()))
+				maior = arrayCandidatos[i].getIdade();
 			}
-			String maiorString = Integer.toString(maiorInt);
-			return "Maior idade entre todos os candidatos homens: " + maiorString + " anos.";
+			return "Maior idade entre todos os candidatos homens: " + maior + " anos.";
 		}
 		else
 			return "Não existem candidatos homens.";
@@ -167,7 +154,7 @@ public class GerenciadorCandidatos {
 	public String mesmoNome()//falta arrumar o problema de ter dois pares de pessoas com nomes iguais
 	{
 		String resultado        = "";
-		int mesmoNomeInt        = 1;
+		int mesmoNome        = 1;
 		boolean[] arrayBool     = new boolean[this.tamanho];
 		boolean existeMesmoNome = false;
 		
@@ -181,7 +168,7 @@ public class GerenciadorCandidatos {
 				    && arrayCandidatos[i].getNome().equals(arrayCandidatos[j].getNome()) )
 				{
 					arrayBool[j] = true;
-					mesmoNomeInt = mesmoNomeInt + 1;
+					mesmoNome = mesmoNome + 1;
 					
 					if( !resultado.contains( arrayCandidatos[i].getNome() ) )
 						resultado = resultado + arrayCandidatos[i].getNome() + ", ";
@@ -190,12 +177,12 @@ public class GerenciadorCandidatos {
 				}
 			}
 		}
-		String mesmoNomeString = Integer.toString(mesmoNomeInt);
+		
 		if (existeMesmoNome)
 		{
 			// http://www.rexegg.com/regex-quickstart.html
 			resultado = resultado.replaceAll(", $", ".");
-			return "Existem " + mesmoNomeString + " candidatos com o mesmo nome. São eles:\n" + resultado;
+			return "Existem " + mesmoNome + " candidatos com o mesmo nome. São eles:\n" + resultado;
 		}
 		else
 			return "Não existem candidatos com o mesmo nome.";

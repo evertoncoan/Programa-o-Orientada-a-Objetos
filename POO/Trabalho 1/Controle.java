@@ -4,10 +4,9 @@ public class Controle {
 		Candidato cand = new Candidato();
 		InteracaoUsuario iu = new InteracaoUsuario();
 		
-		String numCandString = iu.solicitaString("Inisira o número de candidatos: ");
-		int numCandInt = Integer.parseInt(numCandString);
+		int numCand = iu.solicitaInteiro("Inisira o número de candidatos: ");
 		
-		GerenciadorCandidatos gc = new GerenciadorCandidatos(numCandInt);
+		GerenciadorCandidatos gc = new GerenciadorCandidatos(numCand);
 		
 		gc.insereCandidatos();
 		
