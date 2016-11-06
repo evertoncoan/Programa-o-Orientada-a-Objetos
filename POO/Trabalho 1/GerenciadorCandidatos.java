@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
-public class GerenciadorCandidatos {
+public class GerenciadorCandidatos 
+{
 	InteracaoUsuario iu = new InteracaoUsuario();
 	
 	private Candidato[] arrayCandidatos;
