@@ -1,3 +1,4 @@
+package ExerciciosDeClasses.Aluno;
 
 public class GerenciadorAlunos {
 	Aluno[] alunos = new Aluno[3];

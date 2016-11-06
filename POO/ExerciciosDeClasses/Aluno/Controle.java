@@ -1,8 +1,9 @@
+package ExerciciosDeClasses.Aluno;
 
 public class Controle {
 	public static void main(String[] args){
 		//InteracaoUsuario iu = new InteracaoUsuario();
-		GerenciadorAlunos ga =new GerenciadorAlunos(3);
+		GerenciadorAlunos ga = new GerenciadorAlunos(3);
 		
 		double[] notas1 = new double[3];
 		Disciplina ine5401 = new Disciplina("ine5401", "Introdução a CO", "2016-2", notas1);

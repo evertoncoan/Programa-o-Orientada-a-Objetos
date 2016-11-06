@@ -1,3 +1,4 @@
+package ExerciciosDeClasses.Aluno;
 
 public class Disciplina {
 	private String codigo;

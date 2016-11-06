@@ -1,3 +1,5 @@
+package ExerciciosDeClasses.Aluno;
+
 import java.util.Scanner;
 
 public class InteracaoUsuario {
