@@ -14,6 +14,7 @@ public class InteracaoUsuario {
 		
 		while (notNumber == false)
 		{
+			String mensagemErro = "Não é número inteiro positivo.\nInsira um número inteiro positivo.";
 			String texto = this.solicitaString(msg);
 			
 			if( texto == null )
@@ -24,12 +25,14 @@ public class InteracaoUsuario {
 			try
 			{
 				inteiro = Integer.parseInt(texto);
-				
-				notNumber = true;
+				if (inteiro > -1)
+					notNumber = true;
+				else
+					this.informaUsuario(mensagemErro);
 			}
-			catch(NumberFormatException  e)
+			catch(NumberFormatException e)
 			{
-				 this.informaUsuario("Não é número. Insira um número");
+				 this.informaUsuario(mensagemErro);
 			}
 		}
 		
@@ -52,5 +55,30 @@ public class InteracaoUsuario {
 			}
 		}
 		return genero;
+	}
+	
+	public int solicitaMenu(String msg)
+	{
+		int menu          = 0;
+		boolean notNumber = false;
+		
+		while (notNumber == false)
+		{
+			String texto = this.solicitaString(msg);
+			
+			if(    !"1".equals(texto) || !"2".equals(texto) || !"3".equals(texto)
+			    || !"4".equals(texto) || !"5".equals(texto) || !"6".equals(texto) )
+			{
+				menu = Integer.parseInt(texto);
+				notNumber = true;
+			}
+				
+			if( texto == null )
+			{
+				break;
+			}
+		}
+		
+		return menu;
 	}
 }

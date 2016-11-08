@@ -1,4 +1,4 @@
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class GerenciadorCandidatos 
 {
@@ -152,10 +152,44 @@ public class GerenciadorCandidatos
 	 * 
 	 * @return uma String contendo a quantidade de candidatos com o mesmo nome.
 	 */
-	public String mesmoNome()//falta arrumar o problema de ter dois pares de pessoas com nomes iguais
+	public String mesmoNome()
+	{
+		int     mesmoNome       = 0;
+		boolean existeMesmoNome = false;
+		
+		String  nome      = iu.solicitaString("Insira um nome que deseja pesquisar no array: ");
+		String  resultado = "";
+		
+		for (int i = 0; i < this.tamanho; i++){
+			if (nome.equals(arrayCandidatos[i].getNome()))
+			{
+				existeMesmoNome = true;
+				mesmoNome = mesmoNome + 1;
+				resultado = resultado + arrayCandidatos[i] + ", ";
+			}
+		}
+			if (existeMesmoNome){
+				// http://www.rexegg.com/regex-quickstart.html
+				resultado = resultado.replaceAll(", $", ".");
+				if (mesmoNome > 1)
+					return "Existem " + mesmoNome + " candidatos com o esse nome. São eles:\n" + resultado;
+				else
+					return "Existe " + mesmoNome + " candidato esse nome. Ele é:\n" + resultado;
+			}
+			else
+				return "Não existem candidatos esse nome.";
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*public String mesmoNome()//falta arrumar o problema de ter dois pares de pessoas com nomes iguais
 	{
 		String resultado        = "";
-		int mesmoNome        = 1;
+		int mesmoNome           = 1;
 		boolean[] arrayBool     = new boolean[this.tamanho];
 		boolean existeMesmoNome = false;
 		
@@ -187,5 +221,5 @@ public class GerenciadorCandidatos
 		}
 		else
 			return "Não existem candidatos com o mesmo nome.";
-	}
+	}*/
 }
