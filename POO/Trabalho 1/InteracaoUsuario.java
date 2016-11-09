@@ -66,17 +66,23 @@ public class InteracaoUsuario {
 		{
 			String texto = this.solicitaString(msg);
 			
-			if(    !"1".equals(texto) || !"2".equals(texto) || !"3".equals(texto)
-			    || !"4".equals(texto) || !"5".equals(texto) || !"6".equals(texto) )
-			{
-				menu = Integer.parseInt(texto);
-				notNumber = true;
-			}
-				
 			if( texto == null )
 			{
 				break;
 			}
+			
+			try
+			{
+				menu = Integer.parseInt(texto);
+				
+				if( menu == 1 || menu == 2 || menu == 3 || menu == 4 
+						      || menu == 5 || menu == 6 )
+				{
+					notNumber = true;
+				}
+			}
+			
+			catch(NumberFormatException e){}
 		}
 		
 		return menu;
