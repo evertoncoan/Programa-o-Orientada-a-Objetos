@@ -7,7 +7,7 @@ public class InteracaoUsuario {
 		return JOptionPane.showInputDialog(msg);
 	}
 	
-	public int solicitaInteiro(String msg)
+	public int solicitaInteiro(String msg, boolean menu)
 	{
 		int     inteiro   = 0;
 		boolean notNumber = false;
@@ -19,20 +19,29 @@ public class InteracaoUsuario {
 			
 			if( texto == null )
 			{
-				break;
+				if( menu )
+				{
+					return -1;
+				}
+				else
+				{
+					break;
+				}
 			}
 			
 			try
 			{
 				inteiro = Integer.parseInt(texto);
-				if (inteiro > -1)
+				if (inteiro > -1 || menu)
 					notNumber = true;
 				else
-					this.informaUsuario(mensagemErro);
+					if( !menu )
+						this.informaUsuario(mensagemErro);
 			}
 			catch(NumberFormatException e)
 			{
-				 this.informaUsuario(mensagemErro);
+				if( !menu )
+					this.informaUsuario(mensagemErro);
 			}
 		}
 		
@@ -55,36 +64,5 @@ public class InteracaoUsuario {
 			}
 		}
 		return genero;
-	}
-	
-	public int solicitaMenu(String msg)
-	{
-		int menu          = 0;
-		boolean notNumber = false;
-		
-		while (notNumber == false)
-		{
-			String texto = this.solicitaString(msg);
-			
-			if( texto == null )
-			{
-				break;
-			}
-			
-			try
-			{
-				menu = Integer.parseInt(texto);
-				
-				if( menu == 1 || menu == 2 || menu == 3 || menu == 4 
-						      || menu == 5 || menu == 6 )
-				{
-					notNumber = true;
-				}
-			}
-			
-			catch(NumberFormatException e){}
-		}
-		
-		return menu;
 	}
 }

@@ -21,19 +21,19 @@ public class GerenciadorCandidatos
 		this.tamanhoOriginal = this.tamanho;
 	}
 	
-	public Candidato getArrayCandidatos(int i) {
+	public Candidato getCandidato(int i){
 		return arrayCandidatos[i];
 	}
 	
-	public void setArrayCandidatos(int i, Candidato arrayCandidatos) {
+	public void setCandidato(int i, Candidato arrayCandidatos){
 		this.arrayCandidatos[i] = arrayCandidatos;
 	}
 
-	public int getTamanho() {
+	public int getTamanho(){
 		return tamanho;
 	}
 
-	public void setTamanho(int tamanho) {
+	public void setTamanho(int tamanho){
 		this.tamanho = tamanho;
 	}
 	
@@ -71,7 +71,7 @@ public class GerenciadorCandidatos
 	 * @return ma String contendo o nome.
 	 */
 	private String solicitarNome() {
-		return iu.solicitaString("Nome:");
+		return iu.solicitaString("Insira o nome do candidato:");
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class GerenciadorCandidatos
 	 * @return um inteiro contendo a idade.
 	 */
 	private int solicitarIdade() {
-		return iu.solicitaInteiro("Idade:");
+		return iu.solicitaInteiro("Insira a idade do candidato:", false);
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class GerenciadorCandidatos
 	 * @return uma String contendo o gênero.
 	 */
 	private String solicitarGenero() {
-		return iu.solicitaGenero("Genero:\nInsira M ou F.");
+		return iu.solicitaGenero("Insira o gênero do candidato:\nDigite M ou F.");
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class GerenciadorCandidatos
 		}
 		total        = total / this.tamanho;
 		String media = Double.toString(total);
-		return "Idade média: " + media + " anos.";
+		return "A idade média entre todos os candidatos é de " + media + " anos.";
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class GerenciadorCandidatos
 			if (arrayCandidatos[i].getIdade() > maior)
 				maior = arrayCandidatos[i].getIdade();
 		}
-		return "Maior idade entre todos os candidatos: " + maior + " anos.";
+		return "A maior idade entre todos os candidatos é de " + maior + " anos.";
 	}
 	
 	/**
@@ -140,7 +140,7 @@ public class GerenciadorCandidatos
 				if (arrayCandidatos[i].getIdade() > maior && "M".equals(arrayCandidatos[i].getGenero()))
 				maior = arrayCandidatos[i].getIdade();
 			}
-			return "Maior idade entre todos os candidatos homens: " + maior + " anos.";
+			return "A maior idade entre todos os candidatos homens é de " + maior + " anos.";
 		}
 		else
 			return "Não existem candidatos homens.";
@@ -157,7 +157,7 @@ public class GerenciadorCandidatos
 		int     mesmoNome       = 0;
 		boolean existeMesmoNome = false;
 		
-		String  nome      = iu.solicitaString("Insira um nome que deseja pesquisar no array: ");
+		String  nome      = iu.solicitaString("Insira um nome que deseja pesquisar entre os candidatos: ");
 		String  resultado = "";
 		
 		for (int i = 0; i < this.tamanho; i++){
@@ -165,61 +165,19 @@ public class GerenciadorCandidatos
 			{
 				existeMesmoNome = true;
 				mesmoNome = mesmoNome + 1;
-				resultado = resultado + arrayCandidatos[i] + ", ";
+				resultado = resultado + arrayCandidatos[i] + "\n\n";
 			}
 		}
 			if (existeMesmoNome){
 				// http://www.rexegg.com/regex-quickstart.html
-				resultado = resultado.replaceAll(", $", ".");
+				//resultado = resultado.replaceAll("\n$", ".");
 				if (mesmoNome > 1)
-					return "Existem " + mesmoNome + " candidatos com o esse nome. São eles:\n" + resultado;
+					return "Existem " + mesmoNome + " candidatos com o esse nome."
+						 + " Seus dados são:\n\n" + resultado;
 				else
-					return "Existe " + mesmoNome + " candidato esse nome. Ele é:\n" + resultado;
+					return "Existe " + mesmoNome + " candidato esse nome. Seus dados são:\n\n" + resultado;
 			}
 			else
 				return "Não existem candidatos esse nome.";
-	}
-	
-	
-	
-	
-	
-	
-	
-	/*public String mesmoNome()//falta arrumar o problema de ter dois pares de pessoas com nomes iguais
-	{
-		String resultado        = "";
-		int mesmoNome           = 1;
-		boolean[] arrayBool     = new boolean[this.tamanho];
-		boolean existeMesmoNome = false;
-		
-		Arrays.fill( arrayBool, Boolean.FALSE );
-		
-		for( int i = 0; i < this.tamanho; i++ )
-		{
-			for( int j = this.tamanho - 1; j > i; j-- )
-			{
-				if( arrayBool[j] == false 
-				    && arrayCandidatos[i].getNome().equals(arrayCandidatos[j].getNome()) )
-				{
-					arrayBool[j] = true;
-					mesmoNome = mesmoNome + 1;
-					
-					if( !resultado.contains( arrayCandidatos[i].getNome() ) )
-						resultado = resultado + arrayCandidatos[i].getNome() + ", ";
-					
-					existeMesmoNome = true;
-				}
-			}
-		}
-		
-		if (existeMesmoNome)
-		{
-			// http://www.rexegg.com/regex-quickstart.html
-			resultado = resultado.replaceAll(", $", ".");
-			return "Existem " + mesmoNome + " candidatos com o mesmo nome. São eles:\n" + resultado;
-		}
-		else
-			return "Não existem candidatos com o mesmo nome.";
-	}*/
+	}	
 }

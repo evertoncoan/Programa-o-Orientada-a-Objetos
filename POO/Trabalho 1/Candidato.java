@@ -40,14 +40,21 @@ public class Candidato {
 	}
 	
 	public String toString(){
-		return "Gênero: " + this.getGenero() +
+		return "Gênero: "  + this.getGenero() +
 			   "\nIdade: " + this.getIdade() +
-			   "\nNome: " + this.getNome();
+			   "\nNome: "  + this.getNome();
 	}
 	
-	public boolean equals(Object o){
-		if (this.getNome().equals(o))
+	public boolean equals(Object o)
+	{
+		Candidato c = (Candidato)o;
+		
+		if (   this.getGenero().equals(c.getGenero())
+			&& this.getNome().equals(c.getNome())
+			&& this.getIdade() == c.getIdade() )
+		{
 			return true;
+		}
 		else
 			return false;
 	}
