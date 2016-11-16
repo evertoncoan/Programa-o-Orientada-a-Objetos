@@ -1,3 +1,4 @@
+package Robo;
 
 public class Robot {
 	private String name;

@@ -1,3 +1,4 @@
+package Robo;
 
 public class MobileRobot extends Robot {
 	private int    power;
