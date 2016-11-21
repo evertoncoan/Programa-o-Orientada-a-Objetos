@@ -33,28 +33,10 @@ public class S_Temperatura extends Sensor{
 	public float leValor(){
 		Random gerador = new Random();
 		float temperatura = 0;
-		int intervalo = 0;
 		
-		while (intervalo != 3)
-		{
-			temperatura = gerador.nextFloat() * 40;
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("Temperatura: " + temperatura);
-			if (temperatura < 15.5 || temperatura > 30.8)
-				intervalo ++;
-			else
-				intervalo = 0;
-		}
+		temperatura = gerador.nextFloat() * 40;
 		
-		System.out.println("\nForam registradas mais de três temperaturas "
-				         + "consecutivas fora do intervalo de 15.5 a 30.8.");
-		
-		return 0;
+		return temperatura;
 	}
 	
 	public String toString(){

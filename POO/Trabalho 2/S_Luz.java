@@ -22,21 +22,9 @@ public class S_Luz extends Sensor{
 		Random gerador = new Random();
 		int luz = 0;
 		
-		while (luz < 500)
-		{
-			luz = gerador.nextInt(1000);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("Luz: " + luz);
-		}
+		luz = gerador.nextInt(1000);
 		
-		System.out.println("\nLED aceso.");
-		
-		return 0;
+		return luz;
 	}
 	
 	public String toString(){
