@@ -1,3 +1,9 @@
+/*
+Para o método + boolean estaLigado(); verificar se o valor da temperatura está
+igual a 0, se estiver retornar false, senão retornar true.
+Para o método + reinicia(); deixar a temperatura em 0 e mostra-la.
+*/
+
 public class GerenciadorSensores
 {
 	InteracaoUsuario iu = new InteracaoUsuario();
