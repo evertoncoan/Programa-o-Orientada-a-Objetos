@@ -1,4 +1,3 @@
-package Ponto;
 
 public class Main
 {
@@ -19,5 +18,7 @@ public class Main
 		Retangulo r = new Retangulo(p, new Ponto(9,2));
 		r.deslocarX(3);
 		p.mostrar();
+		
+		System.out.println("area(r) = " + r.largura() + " * " + r.altura() + " = " + r.area());
 	}
 }

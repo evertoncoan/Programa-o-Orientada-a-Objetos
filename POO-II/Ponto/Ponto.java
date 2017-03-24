@@ -1,4 +1,3 @@
-package Ponto;
 
 import static java.lang.Math.*;
 
@@ -37,7 +36,18 @@ public class Ponto
 		    dy = this.y - q.y;
 		
 		return sqrt(dx*dx + dy*dy);
+	}
+	
+	int normaX(Ponto q){
+		int dx = this.x - q.x;
 		
+		return abs(dx);
+	}
+	
+	int normaY(Ponto q){
+		int dy = this.y - q.y;
+		
+		return abs(dy);
 	}
 	
 	void mostrar()
