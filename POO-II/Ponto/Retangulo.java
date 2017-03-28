@@ -1,3 +1,4 @@
+package Ponto;
 
 public class Retangulo {
 	private Ponto a,b;

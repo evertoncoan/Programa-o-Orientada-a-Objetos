@@ -1,3 +1,4 @@
+package Carros;
 
 class Main
 {
@@ -6,5 +7,6 @@ class Main
 		Revendedora lojine;
 		lojine = new Revendedora();
 		lojine.listarTodos();
+		lojine.adicionar();
 	}
 }
