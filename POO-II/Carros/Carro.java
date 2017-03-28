@@ -1,9 +1,9 @@
-package Carros;
+//package Carros;
 
 class Carro
 {
-	String marca, modelo, cor;
-	int ano, preco;
+	private String marca, modelo, cor;
+	private int ano, preco;
 	
 	Carro(String marca, String modelo, String cor, int ano, int preco)
 	{
@@ -18,6 +18,15 @@ class Carro
 	{
 		System.out.println(marca + "/" + modelo + "/" + ano + " = " + preco);
 		
+	}
+	
+	void imprimir(int x)
+	{
+		if (ano >= x)
+		{
+			//System.out.println(marca + "/" + modelo + "/" + ano + " = " + preco);
+			imprimir();
+		}
 	}
 }
 //fazer adicionar
