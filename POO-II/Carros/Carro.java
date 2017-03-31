@@ -13,10 +13,8 @@ class Carro {
     this.preco = preco;
   }
 
-  void imprimir(ListadorTodos v) {
-    //System.out.println(marca +"/"+ modelo +"/"+ ano +" = "+ preco);
+  void imprimir(Listador v) {
     v.carro(marca, modelo, cor, ano, preco);
   }
 
-
-}
+}//

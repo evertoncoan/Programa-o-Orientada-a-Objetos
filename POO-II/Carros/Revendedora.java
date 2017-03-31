@@ -32,16 +32,11 @@ class Revendedora {
     return -1;
   }
 
-  void listarTodos() {
+  void listar(Listador v) {
     for(int i = 0; i < n; i++) {
-      acervo[i].imprimir(
-         new ListadorTodos()
-      );
+      acervo[i].imprimir(v);
     }
   }
- 
- void listarNovos() { 
- }
 
   
 }//
