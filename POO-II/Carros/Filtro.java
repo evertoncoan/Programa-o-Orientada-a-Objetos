@@ -1,5 +1,5 @@
 package Carros;
 
-public class Filtro {
-	
+interface Filtro {
+  boolean passou(int ano);
 }
