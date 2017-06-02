@@ -1,78 +1,49 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameInput
+public class GameInput implements KeyListener
 {
-	private int dx;
-	private int dy;
-	private int x;
-	private int y;
+	boolean key_right, key_left, key_down, key_up;
+	
+	public void keyTyped(KeyEvent e){}
 
-	public GameInput()
-	{
-		System.out.println("ESTOU AQUI 7!!!!!");
-		this.x = 0;
-		this.x = 0;
-	}
-
-	public int moveX()
-	{
-		//System.out.println("ESTOU AQUI 6!!!!!");
-		x += dx;
-		return x;
-	}
-
-	public int moveY()
-	{
-		//System.out.println("ESTOU AQUI!!!!! 5");
-		y += dy;
-		return x;
-	}
-
-}
-
-
-
-class EscutadorDeTeclas implements KeyListener
-{
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-		System.out.println("ESTOU AQUI 8!!!!!");
-		myKeyEvt(e, "keyTyped");
-	}
-
-	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		System.out.println("ESTOU AQUI 9!!!!!");
-		myKeyEvt(e, "keyReleased");
+		if (e.getKeyCode() == e.VK_DOWN)
+		{
+			key_down = false;
+		}
+		if (e.getKeyCode() == e.VK_UP)
+		{
+			key_up = false;
+		}
+		if (e.getKeyCode() == e.VK_RIGHT)
+		{
+			key_right = false;
+		}
+		if (e.getKeyCode() == e.VK_LEFT)
+		{
+			key_left = false;
+		}
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		System.out.println("ESTOU AQUI 10!!!!!");
-		myKeyEvt(e, "keyPressed");
-	}
-
-	private void myKeyEvt(KeyEvent e, String text)
-	{
-		
-		System.out.println("ESTOU AQUI 11!!!!!");
-		int key = e.getKeyCode();
-		System.out.println("TEST");
-
-		if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT)
+		if (e.getKeyCode() == e.VK_DOWN)
 		{
-			System.out.println(text + " LEFT");
-			// Call some function
+			key_down = true;
 		}
-		else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT)
+		if (e.getKeyCode() == e.VK_UP)
 		{
-			System.out.println(text + " RIGHT");
-			// Call some function
+			key_up = true;
+		}
+		if (e.getKeyCode() == e.VK_RIGHT)
+		{
+			key_right = true;
+		}
+		if (e.getKeyCode() == e.VK_LEFT)
+		{
+			key_left = true;
 		}
 	}
 }
-

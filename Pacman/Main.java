@@ -6,16 +6,14 @@ public class Main
 		Painel quadro;
 		Janela janela;
 		Reprodutor anima;
+		GameInput input;
 		
-		quadro = new Painel(5);
+		input = new GameInput();
+		quadro = new Painel(5, input);
 		janela = new Janela(quadro, 1280, 720);
-		anima = new Reprodutor(20, quadro, 100, 100);
+		anima = new Reprodutor(7, quadro, 100, 100, input);
 
-		
 		janela.cfgJanela();
 		quadro.addImagem(anima);
-		
 	}
-	
-	
 }

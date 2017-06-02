@@ -7,13 +7,12 @@ public class Painel extends JPanel
 {
 	private Reproduzivel[] imagem;
 	
-	public Painel(int numImg)
+	public Painel(int numImg, GameInput input)
 	{
 		imagem = new Reproduzivel[numImg];
 		
-		System.out.println( "ESTOU AQUI 2!!!!!" );
 		setFocusable(true);
-		addKeyListener( new EscutadorDeTeclas() );
+		addKeyListener(input);
 	}
 	
 	private int slot = 0;
