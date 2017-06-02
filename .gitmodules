@@ -1,0 +1,3 @@
+[submodule "Pacman/images"]
+	path = Pacman/images
+	url = https://github.com/evertoncoan/ImagensDoPacMan
