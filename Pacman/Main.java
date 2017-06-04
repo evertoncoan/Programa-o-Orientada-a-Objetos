@@ -10,7 +10,7 @@ public class Main
 		
 		input = new GameInput();
 		quadro = new Painel(5, input);
-		janela = new Janela(quadro, 1280, 720);
+		janela = new Janela(quadro, "Pac-Man", 1280, 720);
 		anima = new Reprodutor(7, quadro, 100, 100, input);
 
 		janela.cfgJanela();

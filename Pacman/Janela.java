@@ -6,10 +6,12 @@ public class Janela
 	Painel quadro;
 	private int largura;
 	private int altura;
+	private String titulo;
 	
-	public Janela(Painel quadro, int largura, int altura)
+	public Janela(Painel quadro, String titulo, int largura, int altura)
 	{
 		janela = new JFrame();
+		this.titulo = titulo;
 		this.quadro = quadro;
 		this.largura = largura;
 		this.altura = altura;
@@ -17,7 +19,7 @@ public class Janela
 	
 	void cfgJanela()
 	{
-		janela.setTitle("Pac-Man");
+		janela.setTitle(titulo);
 		janela.setSize(largura, altura);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
