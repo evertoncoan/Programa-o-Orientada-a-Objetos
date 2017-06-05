@@ -1,12 +1,20 @@
 import java.awt.Image;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
 
 public class PacMan
 {
+	 private Image pmImage;
+	
 	GameInput input;
+	URL urlForImage;
+    ImageIcon usFlag;
 	
 	public PacMan(GameInput input)
 	{
 		this.input = input;
+		carregarImagem("C");
 	}
 	
 	public int moverX(int x)
@@ -43,5 +51,39 @@ public class PacMan
 		return y;
 	}
 	
+	public void carregarImagem(String img)
+	{
+		urlForImage = getClass().getResource("./images/" + img + ".gif");
+        usFlag = new ImageIcon(urlForImage);
+        pmImage = usFlag.getImage();
+	}
 	
+	public Image pacMan()
+	{
+		if (input.key_right) 
+		{
+			carregarImagem("R");
+			return pmImage;
+		}
+		
+		if (input.key_left) 
+		{
+			carregarImagem("L");
+			return pmImage;
+		}
+		
+		if (input.key_down) 
+		{
+			carregarImagem("D");
+			return pmImage;
+		}
+		
+		if (input.key_up) 
+		{
+			carregarImagem("U");
+			return pmImage;
+		}
+		
+		return pmImage;
+	}
 }

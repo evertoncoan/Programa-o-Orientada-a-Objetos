@@ -35,7 +35,8 @@ public class Reprodutor implements Reproduzivel, ActionListener
 	
 	public void reproduzir(Graphics g)
 	{
-		g.setColor(Color.YELLOW);
-		g.fillOval(x, y, 50, 50); // teste
+		//g.setColor(Color.YELLOW);
+		//g.fillOval(x, y, 50, 50); // teste
+		g.drawImage(pac.pacMan(), x, y, null);
 	}
 }
