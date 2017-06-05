@@ -13,43 +13,22 @@ public class Reprodutor implements Reproduzivel, ActionListener
 	private int x;
 	private int y;
 	
-	GameInput input;
+	PacMan pac;
 	
-	public Reprodutor(int tempo, JPanel painel, int x, int y, GameInput input)
+	public Reprodutor(int tempo, JPanel painel, int x, int y, PacMan pac)
 	{
 		this.tempo = new Timer (tempo, this);
 		this.tempo.start();
 		this.painel = painel;
 		this.x = x;
 		this.y = y;
-		this.input = input;
+		this.pac = pac;
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if (input.key_down)
-		{
-			if (y < 630)
-				y += 5;
-		}
-
-		if (input.key_up)
-		{
-			if (y > 0)
-				y -= 5;
-		}
-
-		if (input.key_right)
-		{
-			if (x < 1214)
-				x += 5;
-		}
-
-		if (input.key_left)
-		{
-			if (x > 0)
-				x -= 5;
-		}
+		x = pac.moverX(x);
+		y = pac.moverY(y);
 		
 		painel.repaint();
 	}

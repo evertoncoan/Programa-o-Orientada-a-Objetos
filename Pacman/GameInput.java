@@ -9,19 +9,19 @@ public class GameInput implements KeyListener
 
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == e.VK_DOWN)
+		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			key_down = false;
 		}
-		if (e.getKeyCode() == e.VK_UP)
+		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			key_up = false;
 		}
-		if (e.getKeyCode() == e.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			key_right = false;
 		}
-		if (e.getKeyCode() == e.VK_LEFT)
+		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			key_left = false;
 		}
@@ -29,19 +29,19 @@ public class GameInput implements KeyListener
 
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == e.VK_DOWN)
+		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			key_down = true;
 		}
-		if (e.getKeyCode() == e.VK_UP)
+		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			key_up = true;
 		}
-		if (e.getKeyCode() == e.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			key_right = true;
 		}
-		if (e.getKeyCode() == e.VK_LEFT)
+		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			key_left = true;
 		}
