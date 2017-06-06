@@ -5,11 +5,11 @@ import javax.swing.ImageIcon;
 
 public class PacMan
 {
-	 private Image pmImage;
+	 private Image imagem;
 	
 	GameInput input;
-	URL urlForImage;
-    ImageIcon usFlag;
+	URL urlParaImagem;
+    ImageIcon imagemIcone;
 	
 	public PacMan(GameInput input)
 	{
@@ -19,7 +19,7 @@ public class PacMan
 	
 	public int moverX(int x)
 	{
-		if (input.key_right && x < 1214)
+		if (input.key_right && x < 1200)
 		{
 			x = x + 5;
 			return x;
@@ -36,7 +36,7 @@ public class PacMan
 	
 	public int moverY(int y)
 	{
-		if (input.key_down && y < 630)
+		if (input.key_down && y < 615)
 		{
 			y = y + 5;
 			return y;
@@ -53,9 +53,9 @@ public class PacMan
 	
 	public void carregarImagem(String img)
 	{
-		urlForImage = getClass().getResource("./images/" + img + ".gif");
-        usFlag = new ImageIcon(urlForImage);
-        pmImage = usFlag.getImage();
+		urlParaImagem = getClass().getResource("./images/" + img + ".gif");
+        imagemIcone = new ImageIcon(urlParaImagem);
+        imagem = imagemIcone.getImage();
 	}
 	
 	public Image pacMan()
@@ -63,27 +63,27 @@ public class PacMan
 		if (input.key_right) 
 		{
 			carregarImagem("R");
-			return pmImage;
+			return imagem;
 		}
 		
 		if (input.key_left) 
 		{
 			carregarImagem("L");
-			return pmImage;
+			return imagem;
 		}
 		
 		if (input.key_down) 
 		{
 			carregarImagem("D");
-			return pmImage;
+			return imagem;
 		}
 		
 		if (input.key_up) 
 		{
 			carregarImagem("U");
-			return pmImage;
+			return imagem;
 		}
 		
-		return pmImage;
+		return imagem;
 	}
 }
