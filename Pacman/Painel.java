@@ -29,6 +29,7 @@ public class Painel extends JPanel
 		super.paintComponent(g);
 		setBackground(Color.BLACK);
 		g.drawImage(lab.labirinto(), 0, 0, this);
+		//g.drawImage(lab.BufImagem(), 0, 0, this);
 		
 		for (int i = 0; i < slot; i++)
 		{

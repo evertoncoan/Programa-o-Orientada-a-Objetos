@@ -1,7 +1,3 @@
-import java.awt.AWTException;// teste
-import java.awt.Color;// teste
-import java.awt.Robot;// teste
-
 public class Main
 {
 	public static void main(String[] args)
@@ -22,19 +18,11 @@ public class Main
 
 		janela.cfgJanela();
 		quadro.addImagem(anima);
-
-	    System.out.println("Pixel:" + 25 + "," + 25);// teste
-	    try {// teste
-	        System.out.println(getPixel(40, 40));// teste
-	    } catch (AWTException e1) {// teste
-	        e1.printStackTrace();// teste
-	    }// teste
+		
+		System.out.println(lab.Rgb());
+		
 	}
 	
-	public static Color getPixel(int x,int y) throws AWTException{// teste
-	    Robot rb = new Robot();// teste
-	    return rb.getPixelColor(x, y);// teste
-	}// teste
 }
 
 
@@ -43,7 +31,10 @@ public class Main
  * https://stackoverflow.com/questions/8961938/java-keylistener-not-registering-arrow-keys
  * https://gist.github.com/hanksudo/5626452
  * 
- * https://stackoverflow.com/questions/22217148/get-pixel-color-on-screen-java
+ * https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
+ * https://stackoverflow.com/questions/601274/how-do-i-properly-load-a-bufferedimage-in-java
+ * http://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferedImage.html#getRGB%28int,%20int%29
+ * https://stackoverflow.com/questions/25761438/understanding-bufferedimage-getrgb-output-values
  * 
  * @author Everton
  *
