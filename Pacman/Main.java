@@ -1,6 +1,6 @@
-import java.awt.AWTException;//
-import java.awt.Color;//
-import java.awt.Robot;//
+import java.awt.AWTException;// teste
+import java.awt.Color;// teste
+import java.awt.Robot;// teste
 
 public class Main
 {
@@ -11,28 +11,30 @@ public class Main
 		Reprodutor anima;
 		GameInput input;
 		PacMan pac;
+		Labirinto lab;
 		
 		input = new GameInput();
 		pac = new PacMan(input);
-		quadro = new Painel(5, input);
-		janela = new Janela(quadro, "Pac-Man", 1280, 720);
-		anima = new Reprodutor(7, quadro, 200, 0, pac);
+		lab = new Labirinto();
+		quadro = new Painel(5, input, lab);
+		janela = new Janela(quadro, "Pac-Man", 1300, 765);// 1280 x 720
+		anima = new Reprodutor(7, quadro, 50, 50, pac);
 
 		janela.cfgJanela();
 		quadro.addImagem(anima);
 
-	    System.out.println("Pixel:" + 25 + "," + 25);//
-	    try {//
-	        System.out.println(getPixel(25, 25));//
-	    } catch (AWTException e1) {//
-	        e1.printStackTrace();//
-	    }//
+	    System.out.println("Pixel:" + 25 + "," + 25);// teste
+	    try {// teste
+	        System.out.println(getPixel(40, 40));// teste
+	    } catch (AWTException e1) {// teste
+	        e1.printStackTrace();// teste
+	    }// teste
 	}
 	
-	public static Color getPixel(int x,int y) throws AWTException{//
-	    Robot rb = new Robot();//
-	    return rb.getPixelColor(x, y);//
-	}//
+	public static Color getPixel(int x,int y) throws AWTException{// teste
+	    Robot rb = new Robot();// teste
+	    return rb.getPixelColor(x, y);// teste
+	}// teste
 }
 
 

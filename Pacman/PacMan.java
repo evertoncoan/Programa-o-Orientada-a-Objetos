@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class PacMan
 {
-	 private Image imagem;
+	private Image imagem;
 	
 	GameInput input;
 	URL urlParaImagem;
@@ -19,7 +19,7 @@ public class PacMan
 	
 	public int moverX(int x)
 	{
-		if (input.key_right && x < 1200)
+		if (input.key_right && x < 1216)
 		{
 			x = x + 5;
 			return x;
@@ -36,7 +36,7 @@ public class PacMan
 	
 	public int moverY(int y)
 	{
-		if (input.key_down && y < 615)
+		if (input.key_down && y < 656)
 		{
 			y = y + 5;
 			return y;

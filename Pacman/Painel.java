@@ -6,10 +6,12 @@ import javax.swing.JPanel;
 public class Painel extends JPanel
 {
 	private Reproduzivel[] imagem;
+	private Labirinto lab;
 	
-	public Painel(int numImg, GameInput input)
+	public Painel(int numImg, GameInput input, Labirinto lab)
 	{
 		imagem = new Reproduzivel[numImg];
+		this.lab = lab;
 		
 		setFocusable(true);
 		addKeyListener(input);
@@ -26,6 +28,7 @@ public class Painel extends JPanel
 	{
 		super.paintComponent(g);
 		setBackground(Color.BLACK);
+		g.drawImage(lab.labirinto(), 0, 0, this);
 		
 		for (int i = 0; i < slot; i++)
 		{

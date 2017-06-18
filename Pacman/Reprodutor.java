@@ -38,8 +38,8 @@ public class Reprodutor implements Reproduzivel, ActionListener
 		//g.setColor(Color.YELLOW);
 		//g.fillOval(x, y, 50, 50); // teste
 		g.drawImage(pac.pacMan(), x, y, null);
-		g.setColor(Color.BLUE);
-		g.drawLine(200, 200, 400, 200);
-		g.fillRect(0, 0, 200, 200);
+		//g.setColor(Color.BLUE);
+		//g.drawLine(200, 200, 400, 200);
+		//g.fillRect(0, 0, 200, 200);
 	}
 }
