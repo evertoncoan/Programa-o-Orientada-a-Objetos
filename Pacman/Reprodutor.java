@@ -27,8 +27,8 @@ public class Reprodutor implements Reproduzivel, ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		x = pac.moverX(x);
-		y = pac.moverY(y);
+		x = pac.moverX(x, y);
+		y = pac.moverY(y, x);
 		
 		painel.repaint();
 	}

@@ -7,44 +7,49 @@ public class PacMan
 {
 	private Image imagem;
 	
-	GameInput input;
-	URL urlParaImagem;
-    ImageIcon imagemIcone;
+	private GameInput input;
+	private URL urlParaImagem;
+    private ImageIcon imagemIcone;
+    private int varia;
+    
+    private Labirinto lab;
 	
-	public PacMan(GameInput input)
+	public PacMan(GameInput input, Labirinto lab)
 	{
 		this.input = input;
 		carregarImagem("C");
+		this.lab = lab;
+		varia = 7;
 	}
 	
-	public int moverX(int x)
+	public int moverX(int x, int y)
 	{
-		if (input.key_right && x < 1216)
+		if (input.key_right && lab.Rgb(x + 71, y) != 269)
 		{
-			x = x + 5;
+			x = x + varia;
 			return x;
 		}
 
-		if (input.key_left && x > 0)
+		if (input.key_left && lab.Rgb(x - varia, y) != 269)
 		{
-			x = x - 5;
+			x = x - varia;
 			return x;
 		}
 		
 		return x;
 	}
 	
-	public int moverY(int y)
+	public int moverY(int y, int x)
 	{
-		if (input.key_down && y < 656)
+		if (input.key_down && lab.Rgb(x, y + 71) != 269)
 		{
-			y = y + 5;
+			y = y + varia;
 			return y;
 		}
 
-		if (input.key_up && y > 0)
+		if (input.key_up && lab.Rgb(x, y - varia) != 269)
 		{
-			y = y - 5;
+			y = y - varia;
 			return y;
 		}
 		

@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 public class Janela
 {
 	private JFrame janela;
-	Painel quadro;
+	private Painel quadro;
 	private int largura;
 	private int altura;
 	private String titulo;

@@ -10,16 +10,16 @@ public class Main
 		Labirinto lab;
 		
 		input = new GameInput();
-		pac = new PacMan(input);
 		lab = new Labirinto();
+		pac = new PacMan(input, lab);
 		quadro = new Painel(5, input, lab);
 		janela = new Janela(quadro, "Pac-Man", 1300, 765);// 1280 x 720
-		anima = new Reprodutor(7, quadro, 50, 50, pac);
+		anima = new Reprodutor(20, quadro, 15, 15, pac);
 
 		janela.cfgJanela();
 		quadro.addImagem(anima);
 		
-		System.out.println(lab.Rgb());
+		
 		
 	}
 	

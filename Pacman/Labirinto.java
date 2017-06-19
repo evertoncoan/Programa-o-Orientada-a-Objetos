@@ -9,23 +9,21 @@ import javax.swing.ImageIcon;
 
 public class Labirinto
 {
-	private Image imagem;
-	
-	BufferedImage img = null;
-	
-	URL urlParaImagem;
-    ImageIcon imagemIcone;
+	private BufferedImage img = null;
+	private Image imagem;	
+	private URL urlParaImagem;
+    private ImageIcon imagemIcone;
     
     public void carregarImagem(String img)
 	{
-		urlParaImagem = getClass().getResource("./images/" + img + ".jpg");
+		urlParaImagem = getClass().getResource("./images/" + img + ".png");
         imagemIcone = new ImageIcon(urlParaImagem);
         imagem = imagemIcone.getImage();
 	}
     
     public Image labirinto()
     {
-    	carregarImagem("Labirinto");
+    	carregarImagem("LabirintoV3");
     	return imagem;
     }
     
@@ -33,19 +31,20 @@ public class Labirinto
     {
     	try
     	{
-    	URL url = getClass().getResource("./images/" + "Labirinto.jpg");
+    	URL url = getClass().getResource("./images/" + "LabirintoV3.png");
     	img = ImageIO.read(url);
     	} catch (IOException e) {}
     	return img;
     }
     
-    public int Rgb()
+    public int Rgb(int x, int y)
     {
-    	Color mycolor = new Color(this.BufImagem().getRGB(40, 40));
+    	Color mycolor = new Color(this.BufImagem().getRGB(x, y));
 		int red = mycolor.getRed();
 		int green = mycolor.getGreen();
 		int blue = mycolor.getBlue();
-		System.out.println(red + " " + green + " " + blue);// teste
+		//System.out.println(red + " " + green + " " + blue);// teste
+		//System.out.println(red + green + blue);// teste
 		return red + green + blue;
     }
 }
