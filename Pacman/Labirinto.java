@@ -27,7 +27,7 @@ public class Labirinto
     	return imagem;
     }
     
-    public BufferedImage BufImagem()
+    public BufferedImage bufImagem()
     {
     	try
     	{
@@ -37,14 +37,23 @@ public class Labirinto
     	return img;
     }
     
-    public int Rgb(int x, int y)
+    public int rgb(int x, int y)
     {
-    	Color mycolor = new Color(this.BufImagem().getRGB(x, y));
+    	Color mycolor = new Color(this.bufImagem().getRGB(x, y));
 		int red = mycolor.getRed();
 		int green = mycolor.getGreen();
 		int blue = mycolor.getBlue();
 		//System.out.println(red + " " + green + " " + blue);// teste
 		//System.out.println(red + green + blue);// teste
 		return red + green + blue;
+    }
+    
+    public boolean azul(int x, int y)
+    {
+    	if (this.rgb(x, y) != 269)
+    		return true;
+    	else
+    		return false;
+    	
     }
 }

@@ -19,8 +19,6 @@ public class Main
 		janela.cfgJanela();
 		quadro.addImagem(anima);
 		
-		
-		
 	}
 	
 }

@@ -24,13 +24,13 @@ public class PacMan
 	
 	public int moverX(int x, int y)
 	{
-		if (input.key_right && lab.Rgb(x + 71, y) != 269)
+		if (input.key_right && lab.azul(x + 71, y))// teste
 		{
 			x = x + varia;
 			return x;
 		}
 
-		if (input.key_left && lab.Rgb(x - varia, y) != 269)
+		if (input.key_left && lab.rgb(x - varia, y) != 269)
 		{
 			x = x - varia;
 			return x;
@@ -41,13 +41,13 @@ public class PacMan
 	
 	public int moverY(int y, int x)
 	{
-		if (input.key_down && lab.Rgb(x, y + 71) != 269)
+		if (input.key_down && lab.rgb(x, y + 71) != 269)
 		{
 			y = y + varia;
 			return y;
 		}
 
-		if (input.key_up && lab.Rgb(x, y - varia) != 269)
+		if (input.key_up && lab.rgb(x, y - varia) != 269)
 		{
 			y = y - varia;
 			return y;
