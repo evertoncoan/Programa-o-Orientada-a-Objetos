@@ -23,7 +23,7 @@ public class Labirinto
     
     public Image labirinto()
     {
-    	carregarImagem("LabirintoV3");
+    	carregarImagem("LabirintoV4");
     	return imagem;
     }
     
@@ -31,7 +31,7 @@ public class Labirinto
     {
     	try
     	{
-    	URL url = getClass().getResource("./images/" + "LabirintoV3.png");
+    	URL url = getClass().getResource("./images/" + "LabirintoV4.png");
     	img = ImageIO.read(url);
     	} catch (IOException e) {}
     	return img;

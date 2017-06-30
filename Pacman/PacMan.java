@@ -19,7 +19,7 @@ public class PacMan
 		this.input = input;
 		carregarImagem("C");
 		this.lab = lab;
-		varia = 7;
+		varia = 5;
 	}
 	
 	public int moverX(int x, int y)

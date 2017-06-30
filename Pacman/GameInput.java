@@ -4,6 +4,8 @@ import java.awt.event.KeyListener;
 public class GameInput implements KeyListener
 {
 	boolean key_right, key_left, key_down, key_up;
+	boolean salvar;//teste
+	boolean carregar;//teste
 	
 	public void keyTyped(KeyEvent e){}
 
@@ -25,6 +27,14 @@ public class GameInput implements KeyListener
 		{
 			key_left = false;
 		}
+		if (e.getKeyCode() == KeyEvent.VK_S)//teste
+		{
+			salvar = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_C)//teste
+		{
+			carregar = false;
+		}
 	}
 
 	public void keyPressed(KeyEvent e)
@@ -44,6 +54,14 @@ public class GameInput implements KeyListener
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			key_left = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_S)//teste
+		{
+			salvar = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_C)//teste
+		{
+			carregar = true;
 		}
 	}
 }

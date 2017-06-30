@@ -1,6 +1,8 @@
+import java.io.IOException;
+
 public class Main
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		Painel quadro;
 		Janela janela;
@@ -8,19 +10,32 @@ public class Main
 		GameInput input;
 		PacMan pac;
 		Labirinto lab;
+		Pastilhas pastilhas;//teste
+		
+		int numImg = 5;
+		int tempoDoTimer = 20;
+		int alturaJanela = 765;
+		int larguraJanela = 1300;
+		int posicaoInicialDoPacManX = 100;
+		int posicaoInicialDoPacManY = 100;
+		
+		String tituloDaJanela = "Pac-Man";
 		
 		input = new GameInput();
 		lab = new Labirinto();
+		pastilhas = new Pastilhas();
 		pac = new PacMan(input, lab);
-		quadro = new Painel(5, input, lab);
-		janela = new Janela(quadro, "Pac-Man", 1300, 765);// 1280 x 720
-		anima = new Reprodutor(20, quadro, 15, 15, pac);
+		quadro = new Painel(numImg, input, lab);
+		janela = new Janela(quadro, tituloDaJanela, larguraJanela, alturaJanela);// 1280 x 720
+		anima = new Reprodutor(tempoDoTimer, quadro, posicaoInicialDoPacManX, posicaoInicialDoPacManY, pac, pastilhas, input);
 
 		janela.cfgJanela();
 		quadro.addImagem(anima);
+		quadro.addImagem(pastilhas);//teste
+		
+		
 		
 	}
-	
 }
 
 
@@ -33,6 +48,8 @@ public class Main
  * https://stackoverflow.com/questions/601274/how-do-i-properly-load-a-bufferedimage-in-java
  * http://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferedImage.html#getRGB%28int,%20int%29
  * https://stackoverflow.com/questions/25761438/understanding-bufferedimage-getrgb-output-values
+ * 
+ * http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html
  * 
  * @author Everton
  *
