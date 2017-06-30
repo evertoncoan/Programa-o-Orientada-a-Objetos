@@ -48,9 +48,9 @@ public class Reprodutor implements Reproduzivel, ActionListener
 				System.out.println("Salvo!");
 			} catch (IOException e1)
 			{
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			input.salvar = false;
 		}
 		
 		if (input.carregar)
@@ -63,9 +63,9 @@ public class Reprodutor implements Reproduzivel, ActionListener
 				System.out.println("Carregado!");
 			} catch (IOException e1)
 			{
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			input.carregar = false;
 		}
 		
 		painel.repaint();

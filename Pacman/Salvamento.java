@@ -9,6 +9,11 @@ import java.io.Serializable;
 public class Salvamento implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void salvar(int numero, String nome) throws IOException
 	{
 		ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(new File(nome + ".sal")));
