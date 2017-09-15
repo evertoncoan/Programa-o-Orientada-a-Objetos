@@ -13,15 +13,15 @@ int* buffer;
 sem_t chuveiros;
 sem_t raias;
 
-void vestiario(void *arg) {
-	int nadadores = *(int *)arg;
+void *vestiario(void *arg) {
+	int num_nadadores = *(int *)arg;
 	sem_wait(&chuveiros);
-	if (contBanho < 5 && nadadoresLimpos < nadadores) {
+	if (contBanho < 5 && nadadoresLimpos < num_nadadores) {
 		sleep(800);
 		nadadoresLimpos++;
 		contBanho++;
 	}
-	if (contBanho < 5 && nadadoresLimpos > nadadores) {
+	if (contBanho < 5 && nadadoresLimpos > num_nadadores) {
 		sleep(1000);
 		contBanho++;
 	}
@@ -34,7 +34,9 @@ void vestiario(void *arg) {
 
 void piscina() {
 	sem_wait(&raias);
+	printf("Nadador utilizando a raia %d\n", id);
 	sleep(500);
+	printf("Nadador liberou a raia %d\n", id);
 	sem_post(&raias);
 }
 
@@ -44,8 +46,31 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+    int num_nadadores = atoi(argv[1]);
+
+    //Iniciando buffer
+    buffer = malloc(sizeof(int) * 5);
+
+    //Iniciando semáforos
     sem_init(&chuveiros, 0, 3);
     sem_init(&raias, 0, 5);
 
+    //Cria as threads dos nadadores
+    int i;
+    pthread_t nadadores[num_nadadores];
+    for (i = 0; i < num_nadadores; i++)
+        pthread_create(&nadadores[i], NULL, vestiario, (void*)&num_nadadores);
 
+    //Aguarda as threads terminarem
+    for (i = 0; i < num_nadadores; i++)
+        pthread_join(nadadores[i], NULL);
+
+    //Libera memória do buffer
+    free(buffer);
+
+    //Destrói os semáforos
+    sem_destroy(&chuveiros);
+    sem_destroy(&raias);
+
+    return 0;
 }
