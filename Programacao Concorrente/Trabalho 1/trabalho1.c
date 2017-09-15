@@ -12,7 +12,7 @@ int* buffer;
 
 sem_t chuveiros;
 sem_t raias;
-
+//fgdfgsdgsdrtsrt
 void *vestiario(void *arg) {
 	int num_nadadores = *(int *)arg;
 	sem_wait(&chuveiros);
