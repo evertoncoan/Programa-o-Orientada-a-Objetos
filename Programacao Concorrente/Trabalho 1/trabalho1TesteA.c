@@ -51,7 +51,7 @@ void *piscina() {
     if (raia1) {
         raia1 = false;
         printf("Nadador utilizando a raia 1\n\n");
-	    sleep(10 * VOLTA_PISCINA);
+	sleep(10 * VOLTA_PISCINA);
         //printf("Nadador liberou a raia 1\n\n");
         raia1 = true;
         sem_post(&raias);
