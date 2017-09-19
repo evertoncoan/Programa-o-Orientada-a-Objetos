@@ -10,8 +10,8 @@
 #define UNIDADE_TEMPO 100000
 #define VOLTA_PISCINA 5 * UNIDADE_TEMPO
 
-void *vestiario();
-void *piscina();
+void *academiaDeNatacao();
+
 
 
 int num_nadadores;
@@ -30,7 +30,10 @@ bool raia3 = true;
 bool raia4 = true;
 bool raia5 = true;
 
-void *vestiario() {
+
+void *academiaDeNatacao(void *arg) {
+int num_nadadores = *((int *)arg);
+banhoInicial() {
     //printf("oi\n\n");
 
 	sem_wait(&chuveiros);
@@ -40,8 +43,69 @@ void *vestiario() {
 		nadadoresLimpos++;
 		contBanho++;
         sem_post(&chuveiros);
-        pthread_exit(piscina());
+        pthread_exit(piscina()); //o que esse metodo faz
 	}
+	
+
+
+    //printf("tchau\n\n");
+	//sem_post(&chuveiros);
+}
+
+piscina() {
+	sem_wait(&raias);
+
+    if (raia1) {
+        raia1 = false;
+        printf("Nadador utilizando a raia 1\n\n");
+	    usleep(500);
+        //printf("Nadador liberou a raia 1\n\n");
+        raia1 = true;
+        sem_post(&raias);
+        pthread_exit(vestiario()); //???????
+    }
+
+    if (raia2) {
+        raia2 = false;
+        printf("Nadador utilizando a raia 2\n\n");
+        usleep(500);
+        //printf("Nadador liberou a raia 2\n\n");
+        raia2 = true;
+        sem_post(&raias);
+        pthread_exit(vestiario());
+    }
+
+    if (raia3) {
+        raia3 = false;
+        printf("Nadador utilizando a raia 3\n\n");
+        usleep(500);
+        //printf("Nadador liberou a raia 3\n\n");
+        raia3 = true;
+        sem_post(&raias);
+        pthread_exit(vestiario());
+    }
+
+    if (raia4) {
+        raia4= false;
+        printf("Nadador utilizando a raia 4\n\n");
+        usleep(500);
+        //printf("Nadador liberou a raia 4\n\n");
+        raia4 = true;
+        sem_post(&raias);
+        pthread_exit(vestiario());
+    }
+
+    if (raia5) {
+        raia5 = false;
+        printf("Nadador utilizando a raia 5\n\n");
+        usleep(500);
+        //printf("Nadador liberou a raia 5\n\n");
+        raia5 = true;
+        sem_post(&raias);
+        pthread_exit(vestiario());
+    }
+}
+banhoFinal(){
 	if (contBanho < 5 && nadadoresLimpos >= num_nadadores) {
         printf("Segundo banho\n\n");
 		usleep(10 * UNIDADE_TEMPO);
@@ -54,66 +118,8 @@ void *vestiario() {
 		usleep(15 * UNIDADE_TEMPO);
 		contBanho = 0;
 	}
-
-
-    //printf("tchau\n\n");
-	//sem_post(&chuveiros);
 }
-
-void *piscina() {
-	sem_wait(&raias);
-
-    if (raia1) {
-        raia1 = false;
-        printf("Nadador utilizando a raia 1\n\n");
-	    usleep(10 * VOLTA_PISCINA);
-        //printf("Nadador liberou a raia 1\n\n");
-        raia1 = true;
-        sem_post(&raias);
-        pthread_exit(vestiario());
-    }
-
-    if (raia2) {
-        raia2 = false;
-        printf("Nadador utilizando a raia 2\n\n");
-        usleep(10 * VOLTA_PISCINA);
-        //printf("Nadador liberou a raia 2\n\n");
-        raia2 = true;
-        sem_post(&raias);
-        pthread_exit(vestiario());
-    }
-
-    if (raia3) {
-        raia3 = false;
-        printf("Nadador utilizando a raia 3\n\n");
-        usleep(10 * VOLTA_PISCINA);
-        //printf("Nadador liberou a raia 3\n\n");
-        raia3 = true;
-        sem_post(&raias);
-        pthread_exit(vestiario());
-    }
-
-    if (raia4) {
-        raia4= false;
-        printf("Nadador utilizando a raia 4\n\n");
-        usleep(10 * VOLTA_PISCINA);
-        //printf("Nadador liberou a raia 4\n\n");
-        raia4 = true;
-        sem_post(&raias);
-        pthread_exit(vestiario());
-    }
-
-    if (raia5) {
-        raia5 = false;
-        printf("Nadador utilizando a raia 5\n\n");
-        usleep(10 * VOLTA_PISCINA);
-        //printf("Nadador liberou a raia 5\n\n");
-        raia5 = true;
-        sem_post(&raias);
-        pthread_exit(vestiario());
-    }
 }
-
 int main(int argc, char *argv[]) {
 	if (argc < 2) {
         printf("Use: %s [numero de nadadores]\n", argv[0]);
@@ -136,7 +142,7 @@ int main(int argc, char *argv[]) {
     int i;
     pthread_t nadadores[num_nadadores];
     for (i = 0; i < num_nadadores; i++)
-        pthread_create(&nadadores[i], NULL, vestiario, NULL);//(void*)&num_nadadores);
+        pthread_create(&nadadores[i], NULL,academiaDeNatacao ,(void *) &arg);//(void*)&num_nadadores);
 
     //Aguarda as threads terminarem
     for (i = 0; i < num_nadadores; i++)
