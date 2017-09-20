@@ -128,11 +128,11 @@ void *limpeza() {
     while (!limpar) {
         usleep(1000);
         if (segundoBanho == num_nadadores) {
-            printf("Simulação terminada.\n");
+            printf("Simulação terminada.\n\n");
             pthread_exit(NULL);
         }
     }
-    printf("Limpando banheiro\n");
+    printf("Limpando banheiro\n\n");
     contBanho = 0;
     usleep(15 * UNIDADE_TEMPO);
     sem_post(&chuveiros);
