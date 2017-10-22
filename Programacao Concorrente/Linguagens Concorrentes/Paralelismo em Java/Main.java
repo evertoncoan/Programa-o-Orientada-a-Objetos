@@ -29,4 +29,3 @@ public class Main extends Thread
 	}
 }
 // oi
-// O Evandro é viado
