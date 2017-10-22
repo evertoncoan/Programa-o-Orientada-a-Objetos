@@ -32,3 +32,4 @@ public class Main extends Thread
 // git add Main.java
 // git commit -m "menssagem"
 // git push origin master
+// git add Main.java;git commit -m "menssagem";git push origin maste  
