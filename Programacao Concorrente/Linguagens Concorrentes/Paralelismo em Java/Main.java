@@ -28,4 +28,7 @@ public class Main extends Thread
 		thread.start();
 	}
 }
-// oi
+// GitHub
+// git add Main.java
+// git commit -m "menssagem"
+// git push origin master
