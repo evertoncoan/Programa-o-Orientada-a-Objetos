@@ -1,15 +1,23 @@
 
-public class Restaurante
+public class Restaurante extends Thread
 {
     public static void main(String[] args)
     {
-       System.out.println("Frango Frito.");
+        Restaurante thread = new Restaurante();
+        thread.start();
+    }
+    
+    public void run()
+    {
+        System.out.println("Frango Frito.\nBatata Frita.");
     }
 }
 
 
 
 
+
+// javac Restaurante.java;java Restaurante
 
 
 // GitHub
