@@ -24,3 +24,5 @@ public class Main extends Thread
         }
     }
 }
+
+// git add .;git commit -m "menssagem";git push origin master
