@@ -30,4 +30,4 @@ public class Servidor
     }
 }
 
-// git add .;git commit -m "menssagem";git push origin master
+// git add .;git commit -m "mensagem";git push origin master
