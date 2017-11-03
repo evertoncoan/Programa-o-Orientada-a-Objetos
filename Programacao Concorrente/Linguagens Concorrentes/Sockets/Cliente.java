@@ -12,7 +12,7 @@ public class Cliente
         {
             Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000); 
             ObjectOutputStream output = new ObjectOutputStream(
-                socket.getOutputStream()); 
+                socket.getOutputStream());
             output.flush();
             ObjectInputStream input = new ObjectInputStream(
                 socket.getInputStream() );

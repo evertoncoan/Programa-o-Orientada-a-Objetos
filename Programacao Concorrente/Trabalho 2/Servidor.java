@@ -24,6 +24,7 @@ public class Servidor
         ServerSocket server = new ServerSocket(5000, 10);
         while (true)
         {
+            System.out.println("Aguardando cliente conectar.");
             Socket s = server.accept();
             System.out.println("Nova conexão realizada");
 
@@ -44,16 +45,26 @@ public class Servidor
             {
             	try
             	{
-                System.out.println(codigos.get(0));//--------------------------------------------
-                out.writeObject(codigos.get(0));
-                out.flush();
-                System.out.println("oi 3");//----------------------------------------------------
-                out.writeObject(intervaloA);
-                System.out.println("oi 4");//----------------------------------------------------
-                out.flush();
-                out.writeObject(intervaloB);
-                out.flush();
-            	} catch (IOException e) {
+                    System.out.println(codigos.get(0));//--------------------------------------------
+                    out.writeObject(codigos.get(0));
+                    out.flush();
+                    System.out.println("oi 3");//----------------------------------------------------
+                    out.writeObject(intervaloA);
+                    System.out.println("oi 4");//----------------------------------------------------
+                    out.flush();
+                    out.writeObject(intervaloB);
+                    out.flush();
+                    
+                    String numero = (String) input.readObject();
+                    
+                    if (numero.equals("-1"))
+                    {
+                        System.out.println("Não encontrado");//---------------------------------------
+                        
+                    }
+                    
+                    
+            	} catch (IOException | ClassNotFoundException e) {
             		e.printStackTrace();
             	}
                 try { input.close(); } catch (IOException e) {
