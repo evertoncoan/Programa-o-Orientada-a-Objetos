@@ -9,7 +9,7 @@ public class Restaurante extends Thread
     
     public void run()
     {
-        System.out.println("Frango Frito.\nBatata Frita.");
+        System.out.println("Frango Frito.\nBatata Frita.\nArroz Frito.");
     }
 }
 
@@ -22,9 +22,9 @@ public class Restaurante extends Thread
 
 // GitHub
 // git add Restaurante.java
-// git commit -m "menssagem"
+// git commit -m "mensagem"
 // git push origin master
-// git add Restaurante.java;git commit -m "menssagem";git push origin master
+// git add Restaurante.java;git commit -m "mensagem";git push origin master
 
 // git pull -r
 
