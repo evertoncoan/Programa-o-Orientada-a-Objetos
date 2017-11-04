@@ -12,14 +12,14 @@ public class Servidor
 	private static List<String> codigos;
     private static int max;
     private static int intervaloA;
-    private static int intervaloB;
+    private static int hash;
 
     public static void main(String[] args) throws IOException
     {
     	codigos = Files.readAllLines(Paths.get("hashes.txt"));
         max = 9999999;
         intervaloA = 0;
-        intervaloB = 199999;
+        hash = 0;
 
         ServerSocket server = new ServerSocket(5000, 10);
         while (true)
@@ -37,7 +37,7 @@ public class Servidor
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-        System.out.println("oi 1");//--------------------------------------------------------------
+        //System.out.println("oi 1");//--------------------------------------------------------------
 
         Thread socketThread = new Thread()
         {
@@ -45,25 +45,34 @@ public class Servidor
             {
             	try
             	{
-                    System.out.println(codigos.get(0));//--------------------------------------------
-                    out.writeObject(codigos.get(0));
+                    out.writeObject(false);
                     out.flush();
-                    System.out.println("oi 3");//----------------------------------------------------
+
+                    System.out.println(codigos.get(hash));//--------------------------------------------
+                    out.writeObject(codigos.get(hash));
+                    out.flush();
+
+                    //System.out.println("oi 3");//----------------------------------------------------
                     out.writeObject(intervaloA);
-                    System.out.println("oi 4");//----------------------------------------------------
+                    //System.out.println("oi 4");//----------------------------------------------------
                     out.flush();
-                    out.writeObject(intervaloB);
-                    out.flush();
-                    
+
                     String numero = (String) input.readObject();
-                    
+
                     if (numero.equals("-1"))
                     {
-                        System.out.println("Não encontrado");//---------------------------------------
-                        
+                        System.out.println("Nao encontrado");//---------------------------------------
+                        intervaloA += 200000;
+                        run();
+                    } else if(numero.equals("-2")) {}
+                    else
+                    {
+                    	System.out.println(numero + " produz o hash " + codigos.get(hash));
+                        hash++;
+                        run();
                     }
-                    
-                    
+
+
             	} catch (IOException | ClassNotFoundException e) {
             		e.printStackTrace();
             	}

@@ -16,7 +16,7 @@ public class Cliente
     private static boolean parar;
     private static Lock lock;
 
-    public static void main(String[] args) throws UnknownHostException, IOException
+    public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException
     {
         Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
 
@@ -24,23 +24,23 @@ public class Cliente
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
-        Thread readThred = startReadThread(input, out);
+        parar = false;
 
-        Thread.interrupted();
+        //lock =
+        //System.out.println("While");---------------------------------------------------------------
 
-        //lock
-        System.out.println("While");
-        
         while (!parar)
         {
-            //int novoIntervalo = (int) input.readObject();
+            parar = (boolean) input.readObject();
+            Thread readThred = startReadThread(input, out);
+
+            try { readThred.join(); } catch (InterruptedException e)
+            { e.printStackTrace(); }
         }
 
         try { input.close(); } catch (IOException e) { e.printStackTrace(); }
         try { out.close(); } catch (IOException e) { e.printStackTrace(); }
         try { socket.close(); } catch (IOException e) { e.printStackTrace(); }
-        try { readThred.join(); } catch (InterruptedException e)
-        { e.printStackTrace(); }
     }
 
     private static Thread startReadThread(ObjectInputStream input, ObjectOutputStream out)
@@ -55,16 +55,15 @@ public class Cliente
                     String hash = (String) input.readObject();
                     //System.out.println("oi 5");//----------------------------------------------------
                     int intervaloA = (int) input.readObject();
-                    int intervaloB = (int) input.readObject();
 
                     System.out.println("Intervalo recebido do servidor de "
-                    + intervaloA + " até " + intervaloB);
+                    + intervaloA + " ate " + (intervaloA + 199999));
 
-                    String numero = codigo(intervaloA, intervaloB, hash);
-                    
+                    String numero = codigo(intervaloA, hash);
+
                     out.writeObject(numero);
                     out.flush();
-                    
+
                 } catch (Exception e)
                 {
                     e.printStackTrace();
@@ -76,30 +75,38 @@ public class Cliente
         return readThread;
     }
 
-    public static String codigo(int intervaloA, int intervaloB, String hash) throws NoSuchAlgorithmException
+    public static String codigo(int intervaloA, String hash) throws NoSuchAlgorithmException
     {
-        System.out.println("codigo");
+        //System.out.println("codigo");--------------------------------------------------------------------
         long tempo = System.currentTimeMillis();
 
-        for (int i = intervaloA; i <= intervaloB; i++)
+        for (int i = 0; i <= 1999; i++)
         {
-            String numero = String.format("%07d", i);
-            
-            //System.out.println(numero);//-----------------------------------------------------------------
-            
-            String md5 = md5(numero);
-
-            if (md5.equals(hash))
+            if (parar)
             {
-                System.out.println("O código " + hash
-                + " é produzido pelo número " + numero);
+                return "-2";
+            } else
+            {
+				for (int u = 0; u <= 99; u++)
+				{
+					String numero = String.format("%07d", intervaloA);
 
-                tempo = System.currentTimeMillis() - tempo;
+					//System.out.println(numero);//-----------------------------------------------------------------
 
-                System.out.println("O programa levou " + tempo
-                + "ms para encontrar esse número.");
-                
-                return numero;
+					String md5 = md5(numero);
+
+					if (md5.equals(hash))
+					{
+						System.out.println("O codigo " + hash + " e produzido pelo numero " + numero);
+
+						tempo = System.currentTimeMillis() - tempo;
+
+						System.out.println("O programa levou " + tempo + "ms para encontrar esse numero.");
+
+						return numero;
+					}
+					intervaloA++;
+				}
             }
         }
         return "-1";
