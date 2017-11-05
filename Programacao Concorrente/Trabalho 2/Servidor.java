@@ -5,11 +5,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Servidor
 {
 	private static List<String> codigos;
+    private static List<ObjectOutputStream> clientes;
     private static int max;
     private static int intervaloA;
     private static int hash;
@@ -17,8 +19,9 @@ public class Servidor
     public static void main(String[] args) throws IOException
     {
     	codigos = Files.readAllLines(Paths.get("hashes.txt"));
+        clientes = new ArrayList<>();
         max = 9999999;
-        intervaloA = 0;
+        intervaloA = -200000;
         hash = 0;
 
         ServerSocket server = new ServerSocket(5000, 10);
@@ -26,7 +29,7 @@ public class Servidor
         {
             System.out.println("Aguardando cliente conectar.");
             Socket s = server.accept();
-            System.out.println("Nova conexão realizada");
+            System.out.println("Nova conexao realizada");
 
             serveClient(s);
         }
@@ -38,6 +41,10 @@ public class Servidor
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
         //System.out.println("oi 1");//--------------------------------------------------------------
+        synchronized (clientes)
+        {
+        	clientes.add(out);
+        }
 
         Thread socketThread = new Thread()
         {
@@ -48,11 +55,12 @@ public class Servidor
                     out.writeObject(false);
                     out.flush();
 
-                    System.out.println(codigos.get(hash));//--------------------------------------------
+                    //System.out.println(codigos.get(hash));//--------------------------------------------
                     out.writeObject(codigos.get(hash));
                     out.flush();
 
                     //System.out.println("oi 3");//----------------------------------------------------
+                    intervaloA += 200000;
                     out.writeObject(intervaloA);
                     //System.out.println("oi 4");//----------------------------------------------------
                     out.flush();
@@ -61,14 +69,15 @@ public class Servidor
 
                     if (numero.equals("-1"))
                     {
-                        System.out.println("Nao encontrado");//---------------------------------------
-                        intervaloA += 200000;
+                        //System.out.println("Nao encontrado");//---------------------------------------
                         run();
                     } else if(numero.equals("-2")) {}
                     else
                     {
                     	System.out.println(numero + " produz o hash " + codigos.get(hash));
                         hash++;
+                        intervaloA = -200000;
+                        destribuidor(out);
                         run();
                     }
 
@@ -85,6 +94,27 @@ public class Servidor
             }
         };
         socketThread.start();
+    }
+
+    private static void destribuidor(ObjectOutputStream out)
+    {
+        synchronized (clientes)
+        {
+            for (ObjectOutputStream stream : clientes)
+            {
+                if (stream != out)
+                {
+                	try
+                    {
+                        stream.writeObject(true);
+                    }
+                    catch (IOException e)
+                    {
+                        System.out.println("Não foi possível se comunicar com o cliente");
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -9,14 +9,18 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Cliente
 {
     private static boolean parar;
+    private static boolean pronto;
     private static Lock lock;
+    private static Condition prosseguir;
 
-    public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException
+    public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException
     {
         Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
 
@@ -25,17 +29,33 @@ public class Cliente
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
         parar = false;
+        pronto = false;
+        lock = new ReentrantLock();
+        prosseguir = lock.newCondition();
+
 
         //lock =
         //System.out.println("While");---------------------------------------------------------------
 
-        while (!parar)
+        while (!pronto)
         {
+            System.out.println("input Cliente");//----------------------------------------------------
             parar = (boolean) input.readObject();
-            Thread readThred = startReadThread(input, out);
 
-            try { readThred.join(); } catch (InterruptedException e)
-            { e.printStackTrace(); }
+            if (parar)
+            {
+                System.out.println("lock");//----------------------------------------------------
+                lock.lock();
+                System.out.println("await");//----------------------------------------------------
+                prosseguir.await();
+                System.out.println("boolean");//----------------------------------------------------
+                parar = (boolean) input.readObject();
+                lock.unlock();
+            }
+
+            Thread readThred = startReadThread(input, out);// Single Thread
+
+
         }
 
         try { input.close(); } catch (IOException e) { e.printStackTrace(); }
@@ -56,8 +76,10 @@ public class Cliente
                     //System.out.println("oi 5");//----------------------------------------------------
                     int intervaloA = (int) input.readObject();
 
+                    prosseguir.signal();
+
                     System.out.println("Intervalo recebido do servidor de "
-                    + intervaloA + " ate " + (intervaloA + 199999));
+                    + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + hash);
 
                     String numero = codigo(intervaloA, hash);
 
@@ -81,34 +103,34 @@ public class Cliente
         long tempo = System.currentTimeMillis();
 
         for (int i = 0; i <= 1999; i++)
-        {
-            if (parar)
-            {
-                return "-2";
-            } else
-            {
-				for (int u = 0; u <= 99; u++)
+		{
+			for (int u = 0; u <= 99; u++)
+			{
+				String numero = String.format("%07d", intervaloA);
+
+				//System.out.println(numero);// -----------------------------------------------------------------
+
+				String md5 = md5(numero);
+
+				if (md5.equals(hash))
 				{
-					String numero = String.format("%07d", intervaloA);
+					System.out.println("O codigo " + hash + " e produzido pelo numero " + numero);
 
-					//System.out.println(numero);//-----------------------------------------------------------------
+					tempo = System.currentTimeMillis() - tempo;
 
-					String md5 = md5(numero);
+					System.out.println("O programa levou " + tempo + "ms para encontrar esse numero.");
 
-					if (md5.equals(hash))
-					{
-						System.out.println("O codigo " + hash + " e produzido pelo numero " + numero);
-
-						tempo = System.currentTimeMillis() - tempo;
-
-						System.out.println("O programa levou " + tempo + "ms para encontrar esse numero.");
-
-						return numero;
-					}
-					intervaloA++;
+					return numero;
 				}
+				intervaloA++;
+			}
+			if (parar)
+            {
+                System.out.println("Signal");//-------------------------------------------------------------
+            	prosseguir.signal();
+                return "-2";
             }
-        }
+		}
         return "-1";
     }
 
