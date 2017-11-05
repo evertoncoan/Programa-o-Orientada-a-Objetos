@@ -23,10 +23,13 @@ public class Cliente
     public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException
     {
         Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
+        Socket aviso = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
 
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+
+        ObjectInputStream receber = new ObjectInputStream(aviso.getInputStream());
 
         parar = false;
         pronto = false;
@@ -40,34 +43,18 @@ public class Cliente
 
         while (!pronto)
         {
-            System.out.println("Começo While");//----------------------------------------------------
-            lock.lock();
-            prosseguir.await();
-            System.out.println("input Cliente");//----------------------------------------------------
-            parar = (boolean) input.readObject();
-            lock.unlock();
-
-            System.out.println("lock 4");//----------------------------------------------------
-            lock.lock();
-            try{
-                prosseguir.signal();
-            } finally {
-                lock.unlock();
-            }
+            parar = (boolean) receber.readObject();
 
 			if (parar)
             {
-                System.out.println("lock");//----------------------------------------------------
+                //System.out.println("lock");//----------------------------------------------------
                 lock.lock();
-                System.out.println("await");//----------------------------------------------------
+                //System.out.println("await");//----------------------------------------------------
                 prosseguir.await();
-                System.out.println("boolean");//----------------------------------------------------
+                //System.out.println("boolean");//----------------------------------------------------
                 parar = false;
                 lock.unlock();
             }
-
-
-
         }
 
         try { input.close(); } catch (IOException e) { e.printStackTrace(); }
@@ -91,25 +78,12 @@ public class Cliente
                     System.out.println("Intervalo recebido do servidor de "
                     + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + hash);
 
-                    lock.lock();
-                    try{
-                        prosseguir.signal();
-                    } finally {
-                        lock.unlock();
-                    }
-
-
                     String numero = codigo(intervaloA, hash);
 
                     out.writeObject(numero);
                     out.flush();
 
-                    System.out.println("lock 2");//----------------------------------------------------
-                    lock.lock();
-                    prosseguir.await();
-                    lock.unlock();
-                    System.out.println("lock 3");//----------------------------------------------------
-                    run();//aqui---------------------------------------------------------------------
+                    run();
 
                 } catch (Exception e)
                 {
@@ -151,7 +125,7 @@ public class Cliente
 			}
 			if (parar)
             {
-				System.out.println("Signal");// -------------------------------------------------------------
+				//System.out.println("Signal");// -------------------------------------------------------------
 				lock.lock();
                 try
 				{
@@ -160,9 +134,11 @@ public class Cliente
 				{
 					lock.unlock();
 				}
+                System.out.println("Outro cliente encontrou.");
 				return "-2";
 			}
 		}
+        System.out.println("Nao encontrado nesta faixa.");
         return "-1";
     }
 

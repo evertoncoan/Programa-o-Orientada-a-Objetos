@@ -29,21 +29,26 @@ public class Servidor
         {
             System.out.println("Aguardando cliente conectar.");
             Socket s = server.accept();
+            Socket aviso = server.accept();
             System.out.println("Nova conexao realizada");
 
-            serveClient(s);
+            serveClient(s, aviso);
         }
     }
 
-    private static void serveClient(Socket socket) throws IOException
+    private static void serveClient(Socket socket, Socket aviso) throws IOException
     {
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
         //System.out.println("oi 1");//--------------------------------------------------------------
+
+        ObjectOutputStream enviar = new ObjectOutputStream(aviso.getOutputStream());
+        enviar.flush();
+
         synchronized (clientes)
         {
-        	clientes.add(out);
+        	clientes.add(enviar);
         }
 
         //out.writeObject(false);
@@ -71,8 +76,6 @@ public class Servidor
                     if (numero.equals("-1"))
                     {
                         //System.out.println("Nao encontrado");//---------------------------------------
-                        out.writeObject(false);
-                        out.flush();
                         run();
                     } else if(numero.equals("-2"))
                     {
@@ -82,12 +85,9 @@ public class Servidor
                     	System.out.println(numero + " produz o hash " + codigos.get(hash));
                         hash++;
                         intervaloA = -200000;
-                        destribuidor(out);
-                        out.writeObject(false);
-                        out.flush();
+                        destribuidor(enviar);
                         run();
                     }
-
 
             	} catch (IOException | ClassNotFoundException e) {
             		e.printStackTrace();
@@ -103,21 +103,22 @@ public class Servidor
         socketThread.start();
     }
 
-    private static void destribuidor(ObjectOutputStream out)
+    private static void destribuidor(ObjectOutputStream enviar)
     {
         synchronized (clientes)
         {
             for (ObjectOutputStream stream : clientes)
             {
-                if (stream != out)
+                if (stream != enviar)
                 {
                 	try
                     {
                         stream.writeObject(true);
+                        stream.flush();
                     }
                     catch (IOException e)
                     {
-                        System.out.println("Não foi possível se comunicar com o cliente");
+                        System.out.println("Nao foi possível se comunicar com o cliente");
                     }
                 }
             }
