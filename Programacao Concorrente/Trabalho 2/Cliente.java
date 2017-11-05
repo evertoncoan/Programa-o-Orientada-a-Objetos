@@ -33,27 +33,30 @@ public class Cliente
         lock = new ReentrantLock();
         prosseguir = lock.newCondition();
 
+        Thread readThred = startReadThread(input, out);// Single Thread
 
         //lock =
-        //System.out.println("While");---------------------------------------------------------------
+        System.out.println("While");//---------------------------------------------------------------
 
         while (!pronto)
         {
+            lock.lock();
+            prosseguir.await();
             System.out.println("input Cliente");//----------------------------------------------------
             parar = (boolean) input.readObject();
+            lock.unlock();
 
-            if (parar)
+			if (parar)
             {
                 System.out.println("lock");//----------------------------------------------------
                 lock.lock();
                 System.out.println("await");//----------------------------------------------------
                 prosseguir.await();
                 System.out.println("boolean");//----------------------------------------------------
-                parar = (boolean) input.readObject();
+                parar = false;
                 lock.unlock();
             }
 
-            Thread readThred = startReadThread(input, out);// Single Thread
 
 
         }
@@ -76,15 +79,23 @@ public class Cliente
                     //System.out.println("oi 5");//----------------------------------------------------
                     int intervaloA = (int) input.readObject();
 
-                    prosseguir.signal();
-
                     System.out.println("Intervalo recebido do servidor de "
                     + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + hash);
+
+                    lock.lock();
+                    try{
+                        prosseguir.signal();
+                    } finally {
+                        lock.unlock();
+                    }
+
 
                     String numero = codigo(intervaloA, hash);
 
                     out.writeObject(numero);
                     out.flush();
+
+                    run();//aqui---------------------------------------------------------------------
 
                 } catch (Exception e)
                 {
@@ -126,10 +137,16 @@ public class Cliente
 			}
 			if (parar)
             {
-                System.out.println("Signal");//-------------------------------------------------------------
-            	prosseguir.signal();
-                return "-2";
-            }
+				System.out.println("Signal");// -------------------------------------------------------------
+				try
+				{
+					prosseguir.signal();
+				} finally
+				{
+					lock.unlock();
+				}
+				return "-2";
+			}
 		}
         return "-1";
     }

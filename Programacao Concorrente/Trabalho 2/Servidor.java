@@ -46,14 +46,15 @@ public class Servidor
         	clientes.add(out);
         }
 
+        //out.writeObject(false);
+        //out.flush();
+
         Thread socketThread = new Thread()
         {
             public void run()
             {
             	try
             	{
-                    out.writeObject(false);
-                    out.flush();
 
                     //System.out.println(codigos.get(hash));//--------------------------------------------
                     out.writeObject(codigos.get(hash));
@@ -70,9 +71,13 @@ public class Servidor
                     if (numero.equals("-1"))
                     {
                         //System.out.println("Nao encontrado");//---------------------------------------
+                        out.writeObject(false);
+                        out.flush();
                         run();
-                    } else if(numero.equals("-2")) {}
-                    else
+                    } else if(numero.equals("-2"))
+                    {
+                        run();
+                    } else
                     {
                     	System.out.println(numero + " produz o hash " + codigos.get(hash));
                         hash++;
