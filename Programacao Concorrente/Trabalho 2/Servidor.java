@@ -83,6 +83,8 @@ public class Servidor
                         hash++;
                         intervaloA = -200000;
                         destribuidor(out);
+                        out.writeObject(false);
+                        out.flush();
                         run();
                     }
 

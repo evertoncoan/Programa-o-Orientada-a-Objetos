@@ -40,11 +40,20 @@ public class Cliente
 
         while (!pronto)
         {
+            System.out.println("Começo While");//----------------------------------------------------
             lock.lock();
             prosseguir.await();
             System.out.println("input Cliente");//----------------------------------------------------
             parar = (boolean) input.readObject();
             lock.unlock();
+
+            System.out.println("lock 4");//----------------------------------------------------
+            lock.lock();
+            try{
+                prosseguir.signal();
+            } finally {
+                lock.unlock();
+            }
 
 			if (parar)
             {
@@ -95,6 +104,11 @@ public class Cliente
                     out.writeObject(numero);
                     out.flush();
 
+                    System.out.println("lock 2");//----------------------------------------------------
+                    lock.lock();
+                    prosseguir.await();
+                    lock.unlock();
+                    System.out.println("lock 3");//----------------------------------------------------
                     run();//aqui---------------------------------------------------------------------
 
                 } catch (Exception e)
@@ -138,7 +152,8 @@ public class Cliente
 			if (parar)
             {
 				System.out.println("Signal");// -------------------------------------------------------------
-				try
+				lock.lock();
+                try
 				{
 					prosseguir.signal();
 				} finally
