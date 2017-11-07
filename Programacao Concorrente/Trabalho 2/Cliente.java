@@ -4,11 +4,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -39,7 +36,7 @@ public class Cliente
         Thread readThred = startReadThread(input, out);// Single Thread
 
         //lock =
-        System.out.println("While");//---------------------------------------------------------------
+        //System.out.println("While");//---------------------------------------------------------------
 
         while (!pronto)
         {
@@ -72,18 +69,27 @@ public class Cliente
                 {
                     //System.out.println("oi 2");//----------------------------------------------------
                     String hash = (String) input.readObject();
-                    //System.out.println("oi 5");//----------------------------------------------------
-                    int intervaloA = (int) input.readObject();
 
-                    System.out.println("Intervalo recebido do servidor de "
-                    + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + hash);
+                    if (hash.equals("terminou"))
+                    {
+                        System.out.println("Todos os numeros encontrados\n");
+                    	System.exit(0);
+                    } else
+                    {
+                    	//System.out.println("oi 5");//----------------------------------------------------
+                        int intervaloA = (int) input.readObject();
 
-                    String numero = codigo(intervaloA, hash);
+                        System.out.println("Intervalo recebido do servidor de "
+                        + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + hash);
 
-                    out.writeObject(numero);
-                    out.flush();
+                        String numero = codigo(intervaloA, hash);
 
-                    run();
+                        out.writeObject(numero);
+                        out.flush();
+
+                        run();
+                    }
+
 
                 } catch (Exception e)
                 {
@@ -135,7 +141,7 @@ public class Cliente
 					lock.unlock();
 				}
                 System.out.println("Outro cliente encontrou.");
-				return "-2";
+				return "-1";
 			}
 		}
         System.out.println("Nao encontrado nesta faixa.");

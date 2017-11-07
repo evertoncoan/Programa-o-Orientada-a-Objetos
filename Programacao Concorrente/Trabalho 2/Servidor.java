@@ -1,31 +1,36 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Servidor
 {
 	private static List<String> codigos;
     private static List<ObjectOutputStream> clientes;
-    private static int max;
     private static int intervaloA;
     private static int hash;
+    private static Lock lock;
+    private static PrintWriter salvar;
 
     public static void main(String[] args) throws IOException
     {
     	codigos = Files.readAllLines(Paths.get("hashes.txt"));
         clientes = new ArrayList<>();
-        max = 9999999;
         intervaloA = -200000;
         hash = 0;
+        lock = new ReentrantLock();
+        salvar = new PrintWriter("Numeros.txt");
 
         ServerSocket server = new ServerSocket(5000, 10);
-        while (true)
+        while (hash < 7)
         {
             System.out.println("Aguardando cliente conectar.");
             Socket s = server.accept();
@@ -66,7 +71,10 @@ public class Servidor
                     out.flush();
 
                     //System.out.println("oi 3");//----------------------------------------------------
+                    lock.lock();
                     intervaloA += 200000;
+                    lock.unlock();
+
                     out.writeObject(intervaloA);
                     //System.out.println("oi 4");//----------------------------------------------------
                     out.flush();
@@ -76,17 +84,39 @@ public class Servidor
                     if (numero.equals("-1"))
                     {
                         //System.out.println("Nao encontrado");//---------------------------------------
-                        run();
-                    } else if(numero.equals("-2"))
-                    {
-                        run();
+                        if (hash == 7) {
+                        	out.writeObject("terminou");
+                            out.flush();
+                        	return;
+                        }
+                        else {
+                        	run();
+                        }
                     } else
                     {
                     	System.out.println(numero + " produz o hash " + codigos.get(hash));
+
+                        lock.lock();
                         hash++;
                         intervaloA = -200000;
+                        lock.unlock();
+
                         destribuidor(enviar);
-                        run();
+
+                        salvar.println(numero);
+
+                        if (hash == 7) {
+                        	out.writeObject("terminou");
+                            out.flush();
+
+                        	System.out.println("Salvo\n");
+                            salvar.close();
+                            System.exit(0);
+                        	return;
+                        }
+                        else {
+                        	run();
+                        }
                     }
 
             	} catch (IOException | ClassNotFoundException e) {
