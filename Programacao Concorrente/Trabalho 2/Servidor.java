@@ -46,7 +46,6 @@ public class Servidor
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-        //System.out.println("oi 1");//--------------------------------------------------------------
 
         ObjectOutputStream enviar = new ObjectOutputStream(aviso.getOutputStream());
         enviar.flush();
@@ -56,34 +55,30 @@ public class Servidor
         	clientes.add(enviar);
         }
 
-        //out.writeObject(false);
-        //out.flush();
-
         Thread socketThread = new Thread()
         {
             public void run()
             {
             	try
             	{
-
-                    //System.out.println(codigos.get(hash));//--------------------------------------------
                     out.writeObject(codigos.get(hash));
                     out.flush();
 
-                    //System.out.println("oi 3");//----------------------------------------------------
                     lock.lock();
                     intervaloA += 200000;
                     lock.unlock();
 
                     out.writeObject(intervaloA);
-                    //System.out.println("oi 4");//----------------------------------------------------
                     out.flush();
+
+                    System.out.println("Intervalo enviado para o cliente de "
+                    + intervaloA + " ate " + (intervaloA + 199999) + ", hash " + codigos.get(hash));
 
                     String numero = (String) input.readObject();
 
                     if (numero.equals("-1"))
                     {
-                        //System.out.println("Nao encontrado");//---------------------------------------
+                        //System.out.println("Nao encontrado");
                         if (hash == 7) {
                         	out.writeObject("terminou");
                             out.flush();
@@ -94,7 +89,7 @@ public class Servidor
                         }
                     } else
                     {
-                    	System.out.println(numero + " produz o hash " + codigos.get(hash));
+                    	System.out.println(numero + " produz o hash " + codigos.get(hash) + "\n");
 
                         lock.lock();
                         hash++;
@@ -111,6 +106,15 @@ public class Servidor
 
                         	System.out.println("Salvo\n");
                             salvar.close();
+
+                            //System.out.println("Esperando");
+                            try {
+                                Thread.sleep(1000);  //1000 milliseconds is one second.
+                            } catch(InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                            }
+                            //System.out.println("Terminou de esperar");
+
                             System.exit(0);
                         	return;
                         }

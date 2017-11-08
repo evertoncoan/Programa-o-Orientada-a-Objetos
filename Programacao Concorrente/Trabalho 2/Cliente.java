@@ -33,10 +33,7 @@ public class Cliente
         lock = new ReentrantLock();
         prosseguir = lock.newCondition();
 
-        Thread readThred = startReadThread(input, out);// Single Thread
-
-        //lock =
-        //System.out.println("While");//---------------------------------------------------------------
+        Thread readThred = startReadThread(input, out);
 
         while (!pronto)
         {
@@ -44,11 +41,8 @@ public class Cliente
 
 			if (parar)
             {
-                //System.out.println("lock");//----------------------------------------------------
                 lock.lock();
-                //System.out.println("await");//----------------------------------------------------
                 prosseguir.await();
-                //System.out.println("boolean");//----------------------------------------------------
                 parar = false;
                 lock.unlock();
             }
@@ -67,7 +61,6 @@ public class Cliente
             {
                 try
                 {
-                    //System.out.println("oi 2");//----------------------------------------------------
                     String hash = (String) input.readObject();
 
                     if (hash.equals("terminou"))
@@ -76,7 +69,6 @@ public class Cliente
                     	System.exit(0);
                     } else
                     {
-                    	//System.out.println("oi 5");//----------------------------------------------------
                         int intervaloA = (int) input.readObject();
 
                         System.out.println("Intervalo recebido do servidor de "
@@ -104,7 +96,6 @@ public class Cliente
 
     public static String codigo(int intervaloA, String hash) throws NoSuchAlgorithmException
     {
-        //System.out.println("codigo");--------------------------------------------------------------------
         long tempo = System.currentTimeMillis();
 
         for (int i = 0; i <= 1999; i++)
@@ -113,7 +104,7 @@ public class Cliente
 			{
 				String numero = String.format("%07d", intervaloA);
 
-				//System.out.println(numero);// -----------------------------------------------------------------
+				//System.out.println(numero);
 
 				String md5 = md5(numero);
 
@@ -123,7 +114,7 @@ public class Cliente
 
 					tempo = System.currentTimeMillis() - tempo;
 
-					System.out.println("O programa levou " + tempo + "ms para encontrar esse numero.");
+					System.out.println("O programa levou " + tempo + "ms para encontrar esse numero.\n");
 
 					return numero;
 				}
@@ -131,7 +122,6 @@ public class Cliente
 			}
 			if (parar)
             {
-				//System.out.println("Signal");// -------------------------------------------------------------
 				lock.lock();
                 try
 				{
@@ -140,7 +130,7 @@ public class Cliente
 				{
 					lock.unlock();
 				}
-                System.out.println("Outro cliente encontrou.");
+                System.out.println("Outro cliente encontrou.\n");
 				return "-1";
 			}
 		}
