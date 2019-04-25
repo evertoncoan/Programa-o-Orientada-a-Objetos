@@ -9,16 +9,16 @@ int main()
     //g.imprimirGrafo();
     cout << "Quantidade de vértices = " << g.qtdVertices() << endl;
     cout << "Quantidade de arestas = " << g.qtdArestas() << endl;
-    cout << "Grau do vértice 33 = " << g.grau(33) << endl;
-    cout << "Rótulo do vértice 6 = " << g.rotulo(6) << endl;
+    cout << "Grau do vértice 2 = " << g.grau(2) << endl;
+    cout << "Rótulo do vértice 2 = " << g.rotulo(2) << endl;
 
-    cout << "Vizinhos do 33: ";
-    for (auto i : g.vizinhos(33))
+    cout << "Vizinhos do 2: ";
+    for (auto i : g.vizinhos(2))
         cout << i << " ";
     cout << endl;
 
-    int u = 34;
-    int v = 21;
+    int u = 2;
+    int v = 10;
     if (g.haAresta(u, v))
     {
         cout << "Há aresta entre " << u << " e " << v << endl;
@@ -28,6 +28,9 @@ int main()
 
     cout << "Peso da aresta que liga o vérice " << u << " ao " << v
          << " é = " << g.peso(u,v) << endl;
+
+    g.buscas(2);
+    g.dijkstra(2);
 
     return 0;
 }

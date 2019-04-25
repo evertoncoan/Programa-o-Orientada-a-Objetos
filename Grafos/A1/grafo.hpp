@@ -12,7 +12,7 @@ public:
     Grafo()
     {
         char data[100];
-        ifstream infile("facebook_santiago.net");
+        ifstream infile("fln_pequena.net");
 
         infile >> data;
         //cout << data << endl;
@@ -138,6 +138,103 @@ public:
                      << w << "\n";
             }
             cout << "\n";
+        }
+    }
+
+    void buscas(int s)
+    {
+        vector<bool> visitado;
+        vector<int> distancia;
+
+        for(int i = 0; i < V; i++)
+        {
+            visitado.push_back(false);
+            distancia.push_back(numeric_limits<int>::min());
+        }
+
+        visitado[s-1] = true;
+        distancia[s-1] = 0;
+
+        queue<int> fila;
+        fila.push(s-1);
+
+        int u;
+        while(!fila.empty())
+        {
+            u = fila.front();
+            fila.pop();
+            for (auto it = adj[u].begin(); it!=adj[u].end(); it++)
+            {
+                if (visitado[it->first] == false)
+                {
+                    visitado[it->first] = true;
+                    distancia[it->first] = distancia[u] + 1;
+                    fila.push(it->first);
+                }
+            }
+        }
+
+        for(int i = 0; i <= *max_element(distancia.begin(), distancia.end()); i++)
+        {
+            cout << i << ": ";
+            for(int j = 0; j < distancia.size(); j++)
+            {
+                if(distancia[j] == i)
+                {
+                    cout << j+1 << ",";
+                }
+            }
+            cout << endl;
+        }
+
+        /*for (auto i : distancia)
+            cout << i << endl;*/
+    }
+
+    void dijkstra(int s)
+    {
+        vector<int> distancia;
+        vector<int> antecessor;
+        list<int> vertices;
+
+        for(int i = 0; i < V; i++)
+        {
+            distancia.push_back(numeric_limits<int>::max());
+            antecessor.push_back(s);
+            vertices.push_back(i);
+        }
+
+        distancia[s-1] = 0;
+
+        while(!vertices.empty())
+        {
+            int u = numeric_limits<int>::max();
+            for (auto i : vertices)
+            {
+                if(distancia[i] < u)
+                {
+                    u = i;
+                }
+            }
+
+            vertices.remove(u);
+
+            for (auto v : vizinhos(u+1))
+            {
+                //cout << "v: " << v << endl;
+                if(distancia[v-1] > distancia[u] + peso(u+1, v))
+                {
+                    distancia[v-1] = distancia[u] + peso(u+1, v);
+                    antecessor[v-1] = u+1;
+                }
+            }
+        }
+        for (auto i : distancia)
+                cout << "distancia: " << i << endl;
+        for(int i = 0; i < V; i++)
+        {
+            cout << i + 1 << ": " << antecessor[i] << endl;
+
         }
     }
 };
