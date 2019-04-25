@@ -229,12 +229,34 @@ public:
                 }
             }
         }
-        for (auto i : distancia)
+        /*for (auto i : distancia)
                 cout << "distancia: " << i << endl;
+
         for(int i = 0; i < V; i++)
         {
             cout << i + 1 << ": " << antecessor[i] << endl;
+        }*/
 
+        stack <int> pilha;
+
+        for(int i = 0; i < V; i++)
+        {
+            int antes = antecessor[i];
+            pilha.push(antes);
+            while(antes != s)
+            {
+                //cout << antes << endl;
+                antes = antecessor[antes-1];
+                pilha.push(antes);
+            }
+
+            cout << i + 1 << ": ";
+            while(!pilha.empty())
+            {
+                cout << pilha.top() << ",";
+                pilha.pop();
+            }
+            cout << " d=" << distancia[i] << endl;
         }
     }
 };
