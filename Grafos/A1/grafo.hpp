@@ -9,10 +9,10 @@ public:
     int V;
     int E;
 
-    Grafo()
+    Grafo(string arquivo)
     {
         char data[100];
-        ifstream infile("fln_pequena.net");
+        ifstream infile(arquivo);
 
         infile >> data;
         //cout << data << endl;
@@ -231,7 +231,6 @@ public:
         }
         /*for (auto i : distancia)
                 cout << "distancia: " << i << endl;
-
         for(int i = 0; i < V; i++)
         {
             cout << i + 1 << ": " << antecessor[i] << endl;
@@ -241,22 +240,29 @@ public:
 
         for(int i = 0; i < V; i++)
         {
-            int antes = antecessor[i];
-            pilha.push(antes);
-            while(antes != s)
+            if (i + 1 != s)
             {
-                //cout << antes << endl;
-                antes = antecessor[antes-1];
+                int antes = antecessor[i];
                 pilha.push(antes);
-            }
+                while(antes != s)
+                {
+                    //cout << antes << endl;
+                    antes = antecessor[antes-1];
+                    pilha.push(antes);
+                }
 
-            cout << i + 1 << ": ";
-            while(!pilha.empty())
-            {
-                cout << pilha.top() << ",";
-                pilha.pop();
+                cout << i + 1 << ": ";
+                while(!pilha.empty())
+                {
+                    cout << pilha.top() << ",";
+                    pilha.pop();
+                }
+                cout << i + 1 << "; d=" << distancia[i] << endl;
+            } else {
+                cout << i + 1 << ": " << i + 1 << "; d=" << distancia[i] << endl;
             }
-            cout << " d=" << distancia[i] << endl;
         }
     }
+
+
 };

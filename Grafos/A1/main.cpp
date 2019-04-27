@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    Grafo g;
+    Grafo g("fln_pequena.net");
 
     //g.imprimirGrafo();
     cout << "Quantidade de vértices = " << g.qtdVertices() << endl;
@@ -29,7 +29,9 @@ int main()
     cout << "Peso da aresta que liga o vérice " << u << " ao " << v
          << " é = " << g.peso(u,v) << endl;
 
+    cout << "\nBuscas" << endl;
     g.buscas(2);
+    cout << "\nDijkstra" << endl;
     g.dijkstra(2);
 
     return 0;
