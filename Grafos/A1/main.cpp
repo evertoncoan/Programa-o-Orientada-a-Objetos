@@ -34,6 +34,8 @@ int main()
     cout << "\nDijkstra" << endl;
     g.dijkstra(2);
 
+    g.floydWarshall();
+
     return 0;
 }
 

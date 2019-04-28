@@ -264,5 +264,45 @@ public:
         }
     }
 
+    void floydWarshall()
+    {
+        float distancia[V][V];
 
+        for(int i = 0; i < V; i++)
+        {
+            for(int j = 0; j < V; j++)
+            {
+                if(i == j)
+                {
+                    distancia[i][j] = 0;
+                } else {
+                    distancia[i][j] = peso(i+1, j+1);
+                }
+            }
+        }
+
+        for(int k = 0; k < V; k++)
+        {
+            for(int u = 0; u < V; u++)
+            {
+                for(int v = 0; v < V; v++)
+                {
+                    if(distancia[u][k] + distancia[k][v] < distancia[u][v])
+                    {
+                        distancia[u][v] = distancia[u][k] + distancia[k][v];
+                    }
+                }
+            }
+        }
+
+        for(int i = 0; i < V; i++)
+        {
+            cout << i + 1 << ": ";
+            for(int j = 0; j < V; j++)
+            {
+                cout << distancia[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
 };
