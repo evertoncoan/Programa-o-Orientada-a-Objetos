@@ -34,7 +34,9 @@ int main()
     cout << "\nDijkstra" << endl;
     g.dijkstra(2);
 
+    cout << "\nFloyd-Warshall" << endl;
     g.floydWarshall();
+    //g.temCiclo(); // Não está funcionando
 
     return 0;
 }
