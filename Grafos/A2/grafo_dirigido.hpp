@@ -117,5 +117,46 @@ public:
         }
     }
 
+    void dfs()
+    {
+        vector<bool> C;
+        vector<int> T;
+        vector<int> F;
+        vector<int> A;
 
+        int tempo = 0;
+
+        for(int i = 0; i < V; i++)
+        {
+            C.push_back(false);
+            T.push_back(numeric_limits<int>::max());
+            F.push_back(numeric_limits<int>::max());
+            A.push_back(-1);
+        }
+
+        for(int u = 0; u < V; u++)
+        {
+            if (C[u] == false)
+            {
+                dfsVisit(u, C, T, A, F, tempo);
+            }
+        }
+    }
+
+    void dfsVisit(int& v, vector<bool> C, vector<int>& T, vector<int>& A, vector<int>& F, int& tempo)
+    {
+        C[v] = true;
+        tempo = tempo + 1;
+        T[v] = tempo;
+        for (auto u : vizinhos(v+1))
+        {
+            if (C[u] == false)
+            {
+                A[u] = v;
+                dfsVisit(u, C, T, A, F, tempo);
+            }
+        }
+        tempo = tempo + 1;
+        F[v] = tempo;
+    }
 };
