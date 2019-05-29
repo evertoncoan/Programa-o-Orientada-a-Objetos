@@ -13,11 +13,6 @@ int main()
     cout << "Grau do vértice 2 = " << gd.grau(2) << endl;
     cout << "Rótulo do vértice 2 = " << gd.rotulo(2) << endl;
 
-    cout << "Vizinhos do 3: ";
-    for (auto i : gd.vizinhos(3))
-        cout << i << " ";
-    cout << endl;
-
     int u = 3;
     int v = 6;
     if (gd.haAresta(u, v))
@@ -26,6 +21,8 @@ int main()
     } else {
         cout << "Não há aresta entre " << u << " e " << v << endl;
     }
+
+    gd.componentesFortementeConexas();
 
     /*Grafo g("fln_pequena.net");
 

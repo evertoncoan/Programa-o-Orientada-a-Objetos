@@ -73,10 +73,10 @@ public:
         return rotulos[v];
     }
 
-    vector<int> vizinhos(int v)
+    vector<int> vizinhos(vector<vector<int>> grafo, int v)
     {
         vector<int> vizinhanca;
-        for (auto vizinho : adj[v-1])
+        for (auto vizinho : grafo[v-1])
         {
             vizinhanca.push_back(vizinho+1);
         }
@@ -117,13 +117,34 @@ public:
         }
     }
 
-    void dfs()
+    void componentesFortementeConexas()
     {
         vector<bool> C;
         vector<int> T;
         vector<int> F;
         vector<int> A;
 
+        dfs(C, T, F, A);
+
+        vector<vector<int>> transposto;
+        transposto.resize(V);
+
+        for(int u = 0; u < V; u++)
+        {
+            for (auto v : vizinhos(adj, u+1))
+            {
+                transposto[v-1].push_back(u);
+            }
+        }
+
+        dfsAdaptado(transposto, C, T, F, A);
+
+        for (auto i : A)
+            cout << i+1 << endl;
+    }
+
+    void dfs(vector<bool> C, vector<int>& T, vector<int>& F, vector<int>& A)
+    {
         int tempo = 0;
 
         for(int i = 0; i < V; i++)
@@ -138,22 +159,56 @@ public:
         {
             if (C[u] == false)
             {
-                dfsVisit(u, C, T, A, F, tempo);
+                dfsVisit(adj, u, C, T, F, A, tempo);
             }
         }
     }
 
-    void dfsVisit(int& v, vector<bool> C, vector<int>& T, vector<int>& A, vector<int>& F, int& tempo)
+    void dfsAdaptado(vector<vector<int>> transposto, vector<bool> C, vector<int>& T, vector<int>& F,
+                     vector<int>& A)
+    {
+        vector<int> decrescente;
+        int maior;
+
+        for(int i = 0; i < V; i++)
+        {
+            maior = distance(F.begin(), std::max_element(F.begin(), F.end()));
+            decrescente.push_back(maior);
+            F[maior] = -1;
+        }
+
+        int tempo = 0;
+
+        for(int i = 0; i < V; i++)
+        {
+            C[i] = false;
+            T[i] = numeric_limits<int>::max();
+            F[i] = numeric_limits<int>::max();
+            A[i] = -1;
+        }
+
+        for(auto u : decrescente)
+        {
+            if (C[u] == false)
+            {
+                dfsVisit(transposto, u, C, T, F, A, tempo);
+            }
+        }
+    }
+
+    void dfsVisit(vector<vector<int>> grafo, int& v, vector<bool> C, vector<int>& T, vector<int>& F,
+                  vector<int>& A, int& tempo)
     {
         C[v] = true;
         tempo = tempo + 1;
         T[v] = tempo;
-        for (auto u : vizinhos(v+1))
+        for (auto u : vizinhos(grafo, v+1))
         {
+            u--;
             if (C[u] == false)
             {
                 A[u] = v;
-                dfsVisit(u, C, T, A, F, tempo);
+                dfsVisit(grafo, u, C, T, F, A, tempo);
             }
         }
         tempo = tempo + 1;
