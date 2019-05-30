@@ -139,11 +139,20 @@ public:
 
         dfsAdaptado(transposto, C, T, F, A);
 
+        for (auto i : T)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
+
         for (auto i : A)
-            cout << i+1 << endl;
+        {
+            cout << i+1 << " ";
+        }
+        cout << endl;
     }
 
-    void dfs(vector<bool> C, vector<int>& T, vector<int>& F, vector<int>& A)
+    void dfs(vector<bool>& C, vector<int>& T, vector<int>& F, vector<int>& A)
     {
         int tempo = 0;
 
@@ -164,7 +173,7 @@ public:
         }
     }
 
-    void dfsAdaptado(vector<vector<int>> transposto, vector<bool> C, vector<int>& T, vector<int>& F,
+    void dfsAdaptado(vector<vector<int>> transposto, vector<bool>& C, vector<int>& T, vector<int>& F,
                      vector<int>& A)
     {
         vector<int> decrescente;
@@ -191,14 +200,17 @@ public:
         {
             if (C[u] == false)
             {
+                // Cria a arvore e passa como parametro
                 dfsVisit(transposto, u, C, T, F, A, tempo);
+                // imprime a arvore
             }
         }
     }
 
-    void dfsVisit(vector<vector<int>> grafo, int& v, vector<bool> C, vector<int>& T, vector<int>& F,
+    void dfsVisit(vector<vector<int>> grafo, int& v, vector<bool>& C, vector<int>& T, vector<int>& F,
                   vector<int>& A, int& tempo)
     {
+        // vai adicionando as folhas
         C[v] = true;
         tempo = tempo + 1;
         T[v] = tempo;
