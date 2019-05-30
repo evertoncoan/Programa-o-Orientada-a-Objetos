@@ -305,4 +305,20 @@ public:
             cout << endl;
         }
     }
+
+    void prim()
+    {
+        vector<int> A;
+        vector<int> K;
+
+        for(int i = 0; i < V; i++)
+        {
+            A.push_back(-1);
+            K.push_back(numeric_limits<int>::max());
+        }
+
+        K[0] = 0;
+
+
+    }
 };
