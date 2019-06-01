@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    GrafoDirigido gd("dirigido1.net");
+    GrafoDirigido gd("dirigido2.net");
 
     gd.imprimirGrafo();
     cout << "Quantidade de vértices = " << gd.qtdVertices() << endl;
