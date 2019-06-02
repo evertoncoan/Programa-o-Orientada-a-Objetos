@@ -201,9 +201,7 @@ public:
         {
             if (C[u] == false)
             {
-                // Cria a arvore e passa como parametro
                 dfsVisit(transposto, u, C, T, F, A, tempo);
-                // imprime a arvore
             }
         }
     }
@@ -211,7 +209,6 @@ public:
     void dfsVisit(vector<vector<int>> grafo, int& v, vector<bool>& C, vector<int>& T, vector<int>& F,
                   vector<int>& A, int& tempo)
     {
-        // vai adicionando as folhas
         C[v] = true;
         tempo = tempo + 1;
         T[v] = tempo;
@@ -226,5 +223,53 @@ public:
         }
         tempo = tempo + 1;
         F[v] = tempo;
+    }
+
+    void dfsOrdenacaoTopologica()
+    {
+        vector<bool> C;
+        vector<int> T;
+        vector<int> F;
+
+        int tempo = 0;
+
+        for(int i = 0; i < V; i++)
+        {
+            C.push_back(false);
+            T.push_back(numeric_limits<int>::max());
+            F.push_back(numeric_limits<int>::max());
+        }
+
+        list<int> O;
+
+        for(int u = 0; u < V; u++)
+        {
+            if (C[u] == false)
+            {
+                dfsVisitOT(u, C, T, F, tempo, O);
+            }
+        }
+
+        for (auto i : O)
+            cout << rotulo(i+1) << " --> ";
+        cout << endl;
+    }
+
+    void dfsVisitOT(int& v, vector<bool>& C, vector<int>& T, vector<int>& F, int& tempo, list<int>& O)
+    {
+        C[v] = true;
+        tempo = tempo + 1;
+        T[v] = tempo;
+        for (auto u : vizinhos(adj, v+1))
+        {
+            u--;
+            if (C[u] == false)
+            {
+                dfsVisitOT(u, C, T, F, tempo, O);
+            }
+        }
+        tempo = tempo + 1;
+        F[v] = tempo;
+        O.push_front(v);
     }
 };
