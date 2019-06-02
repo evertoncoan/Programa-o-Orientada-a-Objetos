@@ -7,7 +7,11 @@ int main()
 {
     GrafoDirigido gd("dirigido2.net");
 
-    gd.imprimirGrafo();
+    cout << "Componentes Fortemente Conexas" << endl;
+    gd.componentesFortementeConexas();
+    cout << endl;
+
+    /*gd.imprimirGrafo();
     cout << "Quantidade de vértices = " << gd.qtdVertices() << endl;
     cout << "Quantidade de arestas = " << gd.qtdArestas() << endl;
     cout << "Grau do vértice 2 = " << gd.grau(2) << endl;
@@ -20,13 +24,15 @@ int main()
         cout << "Há aresta entre " << u << " e " << v << endl;
     } else {
         cout << "Não há aresta entre " << u << " e " << v << endl;
-    }
+    }*/
 
-    gd.componentesFortementeConexas();
 
-    /*Grafo g("fln_pequena.net");
+    Grafo g("fln_pequena.net");
 
-    //g.imprimirGrafo();
+    cout << "Prim" << endl;
+    g.prim();
+
+    /*//g.imprimirGrafo();
     cout << "Quantidade de vértices = " << g.qtdVertices() << endl;
     cout << "Quantidade de arestas = " << g.qtdArestas() << endl;
     cout << "Grau do vértice 2 = " << g.grau(2) << endl;

@@ -139,17 +139,18 @@ public:
 
         dfsAdaptado(transposto, C, T, F, A);
 
-        for (auto i : T)
+        int posicaoMaior;
+        while (*max_element(T.begin(), T.end()) != -1)
         {
-            cout << i << " ";
-        }
-        cout << endl;
+            posicaoMaior = distance(T.begin(), std::max_element(T.begin(), T.end()));
+            cout << posicaoMaior + 1 << ",";
+            if (A[posicaoMaior] == -1)
+            {
+                cout << endl;
+            }
 
-        for (auto i : A)
-        {
-            cout << i+1 << " ";
+            T[posicaoMaior] = -1;
         }
-        cout << endl;
     }
 
     void dfs(vector<bool>& C, vector<int>& T, vector<int>& F, vector<int>& A)

@@ -310,15 +310,48 @@ public:
     {
         vector<int> A;
         vector<int> K;
+        vector<bool> naArvore;
 
         for(int i = 0; i < V; i++)
         {
             A.push_back(-1);
             K.push_back(numeric_limits<int>::max());
+            naArvore.push_back(false);
         }
 
         K[0] = 0;
 
+        priority_queue<pair<int, int>, vector <pair<int, int>>, greater<pair<int, int>>> Q;
+        Q.push(make_pair(0, 0));
 
+        while (!Q.empty())
+        {
+            int u = Q.top().second;
+            Q.pop();
+
+            naArvore[u] = true;
+
+            for(auto v : vizinhos(u+1))
+            {
+                int w = peso(u+1, v);
+                v--;
+
+                if (naArvore[v] == false && K[v] > w)
+                {
+                    K[v] = w;
+                    Q.push(make_pair(K[v], v));
+                    A[v] = u;
+                }
+            }
+        }
+
+        float soma = 0;
+        for (int i = 1; i < V; ++i)
+            soma = soma + peso(A[i]+1, i+1);
+        cout << soma << endl;
+
+        for (int i = 1; i < V; ++i)
+            cout << A[i]+1 << "-" << i+1 << ", ";
+        cout << endl;
     }
 };
